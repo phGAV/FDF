@@ -1,5 +1,4 @@
-# TODO debug/release builds
-NAME := libftprintf.a
+NAME := fdf
 
 LIBFT_DIR := libft
 LIBFT_LIB := $(LIBFT_DIR)/libft.a
@@ -8,7 +7,7 @@ LIBFT_INCLUDE := $(LIBFT_DIR)
 OBJ_DIR := obj
 INCLUDE := include
 
-SRC := %C_FILES%
+SRC := main.c
 OBJ := $(SRC:%.c=$(OBJ_DIR)/%.o)
 DEP := $(OBJ:%.o=%.d)
 
@@ -17,7 +16,7 @@ CC := clang
 CFLAGS := -Wall -Wextra -std=c99 -march=native -O2 -ftree-vectorize -fPIC -MMD -I. -I./$(INCLUDE) -I./$(LIBFT_INCLUDE)
 LDFLAGS := -fuse-linker-plugin -Wl,--strip-all,--sort-common,--as-needed,-z,relro
 
-vpath %.c %SRC_DIRS%
+vpath %.c src
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIBFT_DIR) all
