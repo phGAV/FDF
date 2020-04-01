@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddlast.c                                    :+:      :+:    :+:   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 19:58:49 by ourgot            #+#    #+#             */
-/*   Updated: 2019/10/05 02:59:21 by ourgot           ###   ########.fr       */
+/*   Created: 2020/03/22 17:45:16 by diona             #+#    #+#             */
+/*   Updated: 2020/03/22 17:46:04 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-t_list	*ft_lstaddlast(t_list **head, t_list *new)
+int	key_hook(int keycode, void *mlx)
 {
-	t_list *tmp;
-
-	if (!new || !head)
-		return (NULL);
-	if (*head)
-	{
-		tmp = *head;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	else
-		*head = new;
-	return (new);
+	if (keycode == ESC)
+		exit(0);
+	mlx_loop(mlx);
+	return (0);
 }

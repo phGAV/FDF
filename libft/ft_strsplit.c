@@ -3,70 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 13:39:53 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/28 15:54:40 by ourgot           ###   ########.fr       */
+/*   Created: 2019/09/18 20:36:51 by diona             #+#    #+#             */
+/*   Updated: 2019/09/21 22:21:33 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-static size_t	ft_hopchr(char *s, char c)
+static size_t	ft_count_w(char const *s, char c)
 {
-	char *p;
+	size_t	count;
 
-	p = s;
-	while (*p && *p == c)
-		p++;
-	return (p - s);
-}
-
-static size_t	ft_hopwrd(char *s, char c)
-{
-	char *p;
-
-	p = s;
-	while (*p && *p != c)
-		p++;
-	return (p - s);
-}
-
-static size_t	ft_wrdcnt(char *s, char c)
-{
-	size_t ret;
-
-	ret = 0;
-	while (*(s += ft_hopchr(s, c)))
+	count = 0;
+	while (*s != '\0')
 	{
-		s += ft_hopwrd(s, c);
-		ret++;
+		while (*s == c && *s != '\0')
+			s++;
+		if (*s != '\0')
+			count++;
+		while (*s != c && *s != '\0')
+			s++;
 	}
-	return (ret);
+	return (count);
+}
+
+static	size_t	ft_skip(char const *s, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] == c && s[i] != '\0')
+		i++;
+	return (i);
+}
+
+static	size_t	ft_len(char const *s, char c)
+{
+	size_t	len;
+
+	len = 0;
+	while (*s != c && *s != '\0')
+	{
+		s++;
+		len++;
+	}
+	return (len);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
-	char	**pv;
-	char	**ppv;
-	char	*ps;
-	size_t	w;
+	char			**arr;
+	unsigned int	i;
+	unsigned int	j;
+	size_t			len;
 
-	if (!s)
+	i = 0;
+	j = 0;
+	if (!s || !(arr = (char**)malloc(sizeof(char*) * (ft_count_w(s, c) + 1))))
 		return (NULL);
-	ps = (char *)s;
-	w = ft_wrdcnt(ps, c);
-	if ((pv = (char **)malloc(sizeof(char *) * (w + 1))))
+	while (j < ft_count_w(s, c) && *(s + i) != '\0')
 	{
-		ppv = pv;
-		while (w--)
+		i = i + ft_skip(s + i, c);
+		len = ft_len(s + i, c);
+		if (!(arr[j] = ft_strsub(s, i, len)))
 		{
-			ps += ft_hopchr(ps, c);
-			if (!(*ppv++ = ft_strndup(ps, ft_hopwrd(ps, c))))
-				return (ft_pvdel((void **)pv));
-			ps += ft_hopwrd(ps, c);
+			while (j--)
+				free(arr[j]);
+			free(arr);
+			return (NULL);
 		}
-		*ppv = NULL;
+		j++;
+		i += len;
 	}
-	return (pv);
+	arr[j] = NULL;
+	return (arr);
 }

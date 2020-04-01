@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnlen.c                                       :+:      :+:    :+:   */
+/*   vec_prepend.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
+/*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/23 18:52:17 by diona             #+#    #+#             */
-/*   Updated: 2020/02/23 18:53:18 by diona            ###   ########.fr       */
+/*   Created: 2020/03/10 06:49:27 by ourgot            #+#    #+#             */
+/*   Updated: 2020/03/10 10:28:33 by ourgot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vec.h"
 
-size_t	ft_strnlen(const char *s, size_t n)
+void	*vec_prepend(t_vec *v, const void *object)
 {
-	char *eol;
-
-	eol = ft_memchr(s, '\0', n);
-	return (eol ? (size_t)eol - (size_t)s : n);
+	return (vec_insert(v, 0, object));
 }

@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swapptr.c                                       :+:      :+:    :+:   */
+/*   vec_clone.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/18 16:14:42 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/18 16:16:20 by ourgot           ###   ########.fr       */
+/*   Created: 2020/03/10 06:49:27 by ourgot            #+#    #+#             */
+/*   Updated: 2020/03/10 06:49:27 by ourgot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swapptr(void **p1, void **p2)
-{
-	void *buf;
+#include "libft.h"
+#include "vec.h"
 
-	buf = *p1;
-	*p1 = *p2;
-	*p2 = buf;
+t_vec	*vec_clone(const t_vec *v)
+{
+	t_vec *u;
+
+	u = ft_memdup(v, sizeof(t_vec));
+	if (u && (u->data = ft_memdup(v->data, v->size * v->item_size)))
+		return (u);
+	return (ft_memdel((void **)&u));
 }

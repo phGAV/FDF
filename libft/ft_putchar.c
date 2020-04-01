@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 13:51:09 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/06 13:53:54 by ourgot           ###   ########.fr       */
+/*   Created: 2019/06/06 13:07:59 by diona             #+#    #+#             */
+/*   Updated: 2019/09/21 20:50:47 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 void	ft_putchar(char c)
 {
-	ft_putchar_fd(c, STDOUT_FILENO);
+	ft_putchar_fd(c, 1);
 }

@@ -3,34 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 17:46:15 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/25 08:00:17 by ourgot           ###   ########.fr       */
+/*   Created: 2019/09/19 21:06:24 by diona             #+#    #+#             */
+/*   Updated: 2019/09/21 17:34:34 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_kill_me_plenty(void *content, size_t content_size)
+static void	ft_del(void *data, size_t size)
 {
-	ft_bzero(content, content_size);
-	free(content);
+	ft_memdel(&data);
+	size = 0;
 }
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *item))
+t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list *head;
+	t_list	*new;
+	t_list	*tmp;
+	t_list	*ret;
 
 	if (!lst || !f)
 		return (NULL);
-	if (!(head = f(lst)))
+	if (!(new = f(lst)))
 		return (NULL);
+	ret = new;
 	while ((lst = lst->next))
-		if (!ft_lstaddlast(&head, f(lst)))
+	{
+		if (!(tmp = f(lst)))
 		{
-			ft_lstdel(&head, &ft_kill_me_plenty);
+			ft_lstdel(&ret, ft_del);
 			return (NULL);
 		}
-	return (head);
+		new->next = tmp;
+		new = new->next;
+	}
+	return (ret);
 }

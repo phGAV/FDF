@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   vec_extend.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/18 19:34:05 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/27 00:35:33 by ourgot           ###   ########.fr       */
+/*   Created: 2020/03/10 06:49:27 by ourgot            #+#    #+#             */
+/*   Updated: 2020/03/10 06:49:27 by ourgot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "vec.h"
+#include "internal.h"
 
-size_t	ft_lstsize(t_list *head)
+t_vec	*vec_extend(t_vec *v, const t_vec *u)
 {
-	size_t sz;
+	ssize_t size;
 
-	sz = 0;
-	while (head)
-	{
-		sz++;
-		head = head->next;
-	}
-	return (sz);
+	size = v->size;
+	if (!vec_resize(v, size + u->size))
+		return (NULL);
+	ft_memcpy(v->data + size * v->item_size,
+			u->data, u->size * u->item_size);
+	return (v);
 }

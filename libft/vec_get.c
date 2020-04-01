@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pvdel.c                                         :+:      :+:    :+:   */
+/*   vec_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 19:45:55 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/30 22:56:46 by ourgot           ###   ########.fr       */
+/*   Created: 2020/03/10 06:49:27 by ourgot            #+#    #+#             */
+/*   Updated: 2020/03/10 10:28:33 by ourgot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vec.h"
 
-void	*ft_pvdel(void **p)
+void	*vec_get(const t_vec *v, ssize_t index)
 {
-	void **pv;
+	ssize_t n;
 
-	pv = p;
-	if (!p)
-		return (NULL);
-	while (*pv)
-		ft_memdel(pv++);
-	free(p);
-	return (NULL);
+	n = v->size;
+	if (index < 0)
+		index += n;
+	if ((size_t)index >= (size_t)n)
+		return (v->none);
+	return (v->data + index * v->item_size);
 }

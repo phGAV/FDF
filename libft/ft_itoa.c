@@ -3,43 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 17:33:12 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/16 09:02:35 by ourgot           ###   ########.fr       */
+/*   Created: 2019/09/18 00:07:23 by diona             #+#    #+#             */
+/*   Updated: 2019/09/21 21:50:01 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-static int		ft_digits(int n)
+static int	ft_digit(int n)
 {
-	int ret;
+	int d;
 
-	ret = 1;
+	d = 1;
 	if (n < 0)
-		ret++;
+		d++;
 	while (n /= 10)
-		ret++;
-	return (ret);
+		d++;
+	return (d);
 }
 
-char			*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
-	char		*s;
-	char		*p;
-	int			d;
-	unsigned	num;
+	unsigned int	ln;
+	int				i;
+	char			*s;
 
-	d = ft_digits(n);
-	if (!(s = ft_strnew(d)))
+	i = ft_digit(n);
+	s = ft_strnew(i);
+	if (!s)
 		return (NULL);
-	p = s;
+	ln = n;
 	if (n < 0)
-		*p = '-';
-	num = n < 0 ? 0 - n : n;
-	p += d;
-	while ((*--p = num % 10 | 060) && (num /= 10))
-		continue ;
+		ln = n * -1;
+	s[--i] = ln % 10 + '0';
+	while (ln /= 10)
+		s[--i] = ln % 10 + '0';
+	if (n < 0)
+		s[0] = '-';
 	return (s);
 }

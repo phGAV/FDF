@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isblank.c                                       :+:      :+:    :+:   */
+/*   vec_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 12:57:00 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/12 12:58:05 by ourgot           ###   ########.fr       */
+/*   Created: 2020/03/10 06:49:27 by ourgot            #+#    #+#             */
+/*   Updated: 2020/03/10 06:49:27 by ourgot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isblank(int c)
+#include "libft.h"
+#include "vec.h"
+
+void	vec_clear(t_vec *v)
 {
-	return ((unsigned)c == ' ' || (unsigned)c == '\t');
+	if (v->dtor)
+		vec_apply(v, v->dtor);
+	ft_memset(v->data, 0, v->max_size * v->item_size);
+	v->size = 0,
+	v->none = NULL;
+	v->ctor = NULL;
+	v->dtor = NULL;
 }

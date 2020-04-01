@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 13:32:24 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/25 07:08:13 by ourgot           ###   ########.fr       */
+/*   Created: 2019/09/17 23:00:05 by diona             #+#    #+#             */
+/*   Updated: 2019/10/08 21:37:43 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *dst;
+	char	*str;
 
-	if (!s1 || !s2)
+	if (!(str = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
 		return (NULL);
-	if ((dst = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
-		ft_strcat(ft_strcpy(dst, s1), s2);
-	return (dst);
+	ft_strcpy(str, s1);
+	ft_strcat(str, s2);
+	return (str);
 }

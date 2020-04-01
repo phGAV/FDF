@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 10:44:33 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/06 11:26:22 by ourgot           ###   ########.fr       */
+/*   Created: 2019/09/17 21:25:36 by diona             #+#    #+#             */
+/*   Updated: 2019/09/21 20:09:01 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_striter(char *s, void (*f)(char *))
+void	ft_striter(char *s, void (*f)(char*))
 {
-	if (s && f)
-		while (*s)
-			f(s++);
+	if (!s || !f)
+		return ;
+	while (*s != '\0')
+	{
+		f(s);
+		s++;
+	}
 }

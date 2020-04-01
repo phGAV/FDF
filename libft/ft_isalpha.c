@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 05:20:27 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/07 16:55:42 by ourgot           ###   ########.fr       */
+/*   Created: 2019/09/12 05:10:39 by diona             #+#    #+#             */
+/*   Updated: 2019/09/21 19:29:01 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int		ft_isalpha(int c)
 {
-	return (ft_islower(c) || ft_isupper(c));
+	return (ft_isupper(c) || ft_islower(c));
 }

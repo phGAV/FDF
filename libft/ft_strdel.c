@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 10:33:44 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/17 19:51:54 by ourgot           ###   ########.fr       */
+/*   Created: 2019/09/17 21:18:18 by diona             #+#    #+#             */
+/*   Updated: 2019/09/21 19:57:44 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-void	ft_strdel(char **s)
+void	ft_strdel(char **as)
 {
-	ft_memdel((void **)s);
+	if (!as || !*as)
+		return ;
+	free(*as);
+	*as = NULL;
 }

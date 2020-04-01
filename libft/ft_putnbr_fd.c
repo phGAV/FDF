@@ -3,28 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 04:03:37 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/24 22:33:16 by ourgot           ###   ########.fr       */
+/*   Created: 2019/09/12 23:08:34 by diona             #+#    #+#             */
+/*   Updated: 2019/09/12 23:10:04 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	mommys_little_helper(long n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (n < 0)
+	int			bn;
+	int			d;
+	long int	lnb;
+
+	d = 1;
+	lnb = n;
+	if (lnb < 0)
 	{
-		n = -n;
+		lnb = lnb * -1;
 		ft_putchar_fd('-', fd);
 	}
-	if (n >= 10)
-		mommys_little_helper(n / 10, fd);
-	ft_putchar_fd(n % 10 | 060, fd);
-}
-
-void		ft_putnbr_fd(int n, int fd)
-{
-	mommys_little_helper(n, fd);
+	bn = lnb;
+	while (bn / 10 != 0)
+	{
+		bn = bn / 10;
+		d = d * 10;
+	}
+	while (d != 0)
+	{
+		ft_putchar_fd('0' + lnb / d, fd);
+		lnb = lnb - (lnb / d) * d;
+		d = d / 10;
+	}
 }

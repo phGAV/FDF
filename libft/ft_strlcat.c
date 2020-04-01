@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 03:17:05 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/17 23:52:25 by ourgot           ###   ########.fr       */
+/*   Created: 2019/09/15 16:55:41 by diona             #+#    #+#             */
+/*   Updated: 2019/09/18 02:33:49 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,22 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t sl;
-	size_t dl;
-	size_t n;
+	size_t	dl;
+	size_t	sl;
+	char	*s;
+	char	*d;
 
+	s = (char*)src;
+	d = dst;
 	dl = ft_strlen(dst);
 	sl = ft_strlen(src);
-	if (size <= dl)
+	if (size <= dl || size == 0)
 		return (size + sl);
-	n = sl < size - dl ? sl : size - dl - 1;
-	ft_strncat(dst + dl, src, n);
+	while (*d != '\0')
+		d++;
+	size = size - dl - 1;
+	while (size-- && *s != '\0')
+		*d++ = *s++;
+	*d = '\0';
 	return (dl + sl);
 }

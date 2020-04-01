@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ourgot <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 10:39:05 by ourgot            #+#    #+#             */
-/*   Updated: 2019/09/17 21:58:38 by ourgot           ###   ########.fr       */
+/*   Created: 2019/09/17 21:23:03 by diona             #+#    #+#             */
+/*   Updated: 2019/09/21 16:03:15 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_strclr(char *s)
 {
-	if (s)
-		ft_bzero(s, ft_strlen(s));
+	if (!s)
+		return ;
+	ft_bzero(s, ft_strlen(s));
 }
