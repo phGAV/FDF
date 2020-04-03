@@ -114,6 +114,8 @@ content_size	libft/libft.h	/^	size_t			content_size;$/;"	m	struct:s_list
 ctor	libft/vec.h	/^	void	(*ctor)(void *, const void *);$/;"	m	struct:__anon6
 data	libft/vec.h	/^	void	*data;$/;"	m	struct:__anon6
 display_log	minilibx_macos/mlx_shaders.c	/^void display_log(GLuint object, void (*param_func)(), void (*getlog_func)())$/;"	f
+draw_along_x	src/draw.c	/^void		draw_along_x(t_point start, t_point end, t_fdf *fdf,$/;"	f
+draw_along_y	src/draw.c	/^void		draw_along_y(t_point start, t_point end, t_fdf *fdf,$/;"	f
 draw_line	src/draw.c	/^void		draw_line(t_point start, t_point end, t_fdf *fdf)$/;"	f
 draw_map	src/projection.c	/^void	draw_map(t_map *map, t_fdf *fdf)$/;"	f
 dtor	libft/vec.h	/^	void	(*dtor)(void *);$/;"	m	struct:__anon6
@@ -296,6 +298,7 @@ pixel_vshader	minilibx_macos/mlx_int.h	/^  GLuint	pixel_vshader;$/;"	m	struct:gl
 pixmgt	minilibx_macos/mlx_int.h	/^  int			pixmgt;$/;"	m	struct:mlx_win_list_s
 projection	include/fdf.h	/^	t_projection	projection;$/;"	m	struct:__anon4
 projection	src/projection.c	/^t_point	projection(t_point *p, t_fdf *fdf)$/;"	f
+put_pixels_on_ends	src/draw.c	/^void		put_pixels_on_ends(t_point start,t_point end, t_fdf *fdf)$/;"	f
 quick_sort	libft/ft_qsort.c	/^static inline void	quick_sort(void *left, void *right, size_t size,$/;"	f	file:
 ratio_z	include/fdf.h	/^	int				ratio_z;$/;"	m	struct:__anon4
 read_map	src/read_map.c	/^void		read_map(char *file, t_map *map)$/;"	f
@@ -307,7 +310,6 @@ s_list	libft/libft.h	/^typedef struct		s_list$/;"	s
 s_xpm_col	minilibx_macos/mlx_xpm.c	/^typedef struct  s_xpm_col$/;"	s	file:
 size	libft/vec.h	/^	ssize_t	size;$/;"	m	struct:__anon6
 straight_line	src/draw.c	/^static void	straight_line(t_point start, t_point end, t_fdf *fdf)$/;"	f	file:
-swap_points	src/draw.c	/^static void		swap_points(t_point *start, t_point *end)$/;"	f	file:
 t_camera	include/fdf.h	/^}					t_camera;$/;"	t	typeref:struct:__anon4
 t_fdf	include/fdf.h	/^}					t_fdf;$/;"	t	typeref:struct:__anon5
 t_list	libft/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list

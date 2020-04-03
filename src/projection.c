@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 01:22:55 by diona             #+#    #+#             */
-/*   Updated: 2020/04/02 02:13:58 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/03 18:33:08 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_camera	*camera_init(t_map *map)
 	camera->angle_x = 0;
 	camera->angle_y = 0;
 	camera->angle_z = 0;
-	camera->ratio_z = 1;
+	camera->ratio_z = 2;
 	camera->zoom = y_scale > x_scale ? x_scale : y_scale;
 	camera->offset_x = (WIN_WIDTH - map->width * camera->zoom) / 2;
 	camera->offset_y = (WIN_HEIGHT - map->height * camera->zoom) / 2;
@@ -40,8 +40,8 @@ t_point	*get_point(int x, int y, t_map *map)
 	p->x = x;
 	p->y = y;
 	p->z = map->vertex[y][x];
-	// p->color = p->z == map->max_z ? PINK : TURQUOISE;
-	p->color = p->z == map->min_z ? PINK : TURQUOISE;
+	p->color = p->z == map->max_z ? PINK : TURQUOISE;
+	// p->color = p->z == map->min_z ? PINK : TURQUOISE;
 
 	return (p);
 }
@@ -81,15 +81,24 @@ void	rotate_z(t_point *p, double alpha)
 
 void	iso(t_point *p)
 {
-	rotate_y(p, (45 * M_PI / 180));
-	rotate_x(p, asin(tan(30 * M_PI / 180)));
-	// rotate_x(p, (35.264 * M_PI / 180));
+	// *x = (previous_x - previous_y) * cos(0.523599);
+	// *y = -z + (previous_x + previous_y) * sin(0.523599);
+	int	x;
+	int	y;
+	double a = 35.264;
+	double b = 45;
+
+	x = p->x;
+	y = p->y;
+	// p->x = (x - y) * cos(0.46365);
+	// p->y = p->z + (x + y) * sin(0.46365);
+	// p->y = p->z * sin(a) + (x + y) * cos(a * M_PI / 180) * cos(b * M_PI / 180);
+	p->x = (x - y) * cos(0.523599);
+	p->y = -p->z + (x + y) * sin(0.523599);
 }
 
 t_point	projection(t_point *p, t_fdf *fdf)
 {
-	// чего то тут туда-сюда покрутить повертеть
-
 	p->x *= fdf->camera->zoom;
 	p->y *= fdf->camera->zoom;
 	p->z *= fdf->camera->ratio_z;
