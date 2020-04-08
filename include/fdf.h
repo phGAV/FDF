@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 16:55:03 by diona             #+#    #+#             */
-/*   Updated: 2020/04/02 01:23:57 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/08 23:55:26 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include "libft.h"
 
 # include "errors.h"
-# include "key.h"
 
 # define			WIN_HEIGHT	800
 # define			WIN_WIDTH	1000
@@ -33,6 +32,7 @@
 # define			WHITE		0x00FFFFFF
 # define			PINK		0x00FF3DEA
 # define			TURQUOISE	0x0000FFEC
+# define			BACKGROUND	0x001E296F
 
 typedef enum {
 	ISO,
@@ -70,16 +70,22 @@ typedef struct {
 	void			*window;
 	void			*image;
 	int				*img_ptr;
+	// void			*back;
+	// int				*back_ptr;
 	int				bpp;
 	int				line_size;
 	int				endian;
 	t_camera		*camera;
+	t_map			*map;
 }					t_fdf;
 
+void				set_background(t_fdf *fdf);
 void				draw_line(t_point start, t_point end, t_fdf *fdf);
-int					key_hook(int keycode, void *mlx);
+// int					key_hook(int keycode, void *mlx);
 void				exit_err(char *err_msg);
 void				read_map(char *file, t_map *map);
-void				draw_map(t_map *map, t_fdf *fdf);
+void				draw_map(t_fdf *fdf);
+int					find_vertex_color(int max, int min, int current);
+void				events_control(t_fdf *fdf);
 
 #endif

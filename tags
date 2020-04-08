@@ -8,6 +8,7 @@ ARROW_DOWN	include/key.h	/^# define ARROW_DOWN	/;"	d
 ARROW_LEFT	include/key.h	/^# define ARROW_LEFT	/;"	d
 ARROW_RIGHT	include/key.h	/^# define ARROW_RIGHT	/;"	d
 ARROW_UP	include/key.h	/^# define ARROW_UP	/;"	d
+BACKGROUND	include/fdf.h	/^# define			BACKGROUND	/;"	d
 BUFF_SIZE	libft/get_next_line.h	/^# define BUFF_SIZE /;"	d
 CC	Makefile	/^CC := clang$/;"	m
 CC	libft/Makefile	/^CC = gcc$/;"	m
@@ -23,33 +24,31 @@ FILE_READ	include/errors.h	/^# define FILE_READ	/;"	d
 FONT_HEIGHT	minilibx_macos/mlx_int.h	/^#define	FONT_HEIGHT	/;"	d
 FONT_WIDTH	minilibx_macos/mlx_int.h	/^#define FONT_WIDTH	/;"	d
 GET_NEXT_LINE_H	libft/get_next_line.h	/^# define GET_NEXT_LINE_H$/;"	d
+I	include/key.h	/^# define I	/;"	d
 INCLUDE	Makefile	/^INCLUDE := include$/;"	m
 INTERNAL_H	libft/internal.h	/^# define INTERNAL_H$/;"	d
 ISO	include/fdf.h	/^	ISO,$/;"	e	enum:__anon1
+KEY_0	include/key.h	/^# define KEY_0	/;"	d
+KEY_1	include/key.h	/^# define KEY_1	/;"	d
+KEY_2	include/key.h	/^# define KEY_2	/;"	d
+KEY_3	include/key.h	/^# define KEY_3	/;"	d
+KEY_4	include/key.h	/^# define KEY_4	/;"	d
+KEY_5	include/key.h	/^# define KEY_5	/;"	d
+KEY_6	include/key.h	/^# define KEY_6	/;"	d
+KEY_7	include/key.h	/^# define KEY_7	/;"	d
+KEY_8	include/key.h	/^# define KEY_8	/;"	d
+KEY_9	include/key.h	/^# define KEY_9	/;"	d
 KEY_H	include/key.h	/^# define KEY_H$/;"	d
 LDFLAGS	Makefile	/^LDFLAGS := -fuse-linker-plugin -Wl,--strip-all,--sort-common,--as-needed,-z,relro$/;"	m
 LIBFT_DIR	Makefile	/^LIBFT_DIR := libft$/;"	m
 LIBFT_H	libft/libft.h	/^# define LIBFT_H$/;"	d
 LIBFT_INCLUDE	Makefile	/^LIBFT_INCLUDE := $(LIBFT_DIR)$/;"	m
 LIBFT_LIB	Makefile	/^LIBFT_LIB := $(LIBFT_DIR)\/libft.a$/;"	m
-MAIN_PAD_0	include/key.h	/^# define MAIN_PAD_0	/;"	d
-MAIN_PAD_1	include/key.h	/^# define MAIN_PAD_1	/;"	d
-MAIN_PAD_2	include/key.h	/^# define MAIN_PAD_2	/;"	d
-MAIN_PAD_3	include/key.h	/^# define MAIN_PAD_3	/;"	d
-MAIN_PAD_4	include/key.h	/^# define MAIN_PAD_4	/;"	d
-MAIN_PAD_5	include/key.h	/^# define MAIN_PAD_5	/;"	d
-MAIN_PAD_6	include/key.h	/^# define MAIN_PAD_6	/;"	d
-MAIN_PAD_7	include/key.h	/^# define MAIN_PAD_7	/;"	d
-MAIN_PAD_8	include/key.h	/^# define MAIN_PAD_8	/;"	d
-MAIN_PAD_9	include/key.h	/^# define MAIN_PAD_9	/;"	d
-MAIN_PAD_I	include/key.h	/^# define MAIN_PAD_I	/;"	d
-MAIN_PAD_MINUS	include/key.h	/^# define MAIN_PAD_MINUS	/;"	d
-MAIN_PAD_P	include/key.h	/^# define MAIN_PAD_P	/;"	d
-MAIN_PAD_PLUS	include/key.h	/^# define MAIN_PAD_PLUS	/;"	d
 MAP_ERR	include/errors.h	/^# define MAP_ERR	/;"	d
 MAX_EVENT	minilibx_macos/mlx_int.h	/^#define	MAX_EVENT	/;"	d
 MAX_PIXEL_NB	minilibx_macos/mlx_int.h	/^#define MAX_PIXEL_NB	/;"	d
 MEMORY	include/errors.h	/^# define MEMORY	/;"	d
+MINUS	include/key.h	/^# define MINUS	/;"	d
 MLX_DIR	Makefile	/^MLX_DIR := minilibx_macos$/;"	m
 MLX_FLAGS	Makefile	/^MLX_FLAGS := -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit$/;"	m
 MLX_H	minilibx_macos/mlx.h	/^#define	MLX_H$/;"	d
@@ -63,26 +62,17 @@ MOUSE_THIRD_BUTTON	include/key.h	/^# define MOUSE_THIRD_BUTTON	/;"	d
 NAME	Makefile	/^NAME := fdf$/;"	m
 NAME	libft/Makefile	/^NAME = libft.a$/;"	m
 NOM	minilibx_macos/Makefile	/^NOM=libmlx.a$/;"	m
-NUM_PAD_0	include/key.h	/^# define NUM_PAD_0	/;"	d
-NUM_PAD_1	include/key.h	/^# define NUM_PAD_1	/;"	d
-NUM_PAD_2	include/key.h	/^# define NUM_PAD_2	/;"	d
-NUM_PAD_3	include/key.h	/^# define NUM_PAD_3	/;"	d
-NUM_PAD_4	include/key.h	/^# define NUM_PAD_4	/;"	d
-NUM_PAD_5	include/key.h	/^# define NUM_PAD_5	/;"	d
-NUM_PAD_6	include/key.h	/^# define NUM_PAD_6	/;"	d
-NUM_PAD_7	include/key.h	/^# define NUM_PAD_7	/;"	d
-NUM_PAD_8	include/key.h	/^# define NUM_PAD_8	/;"	d
-NUM_PAD_9	include/key.h	/^# define NUM_PAD_9	/;"	d
-NUM_PAD_MINUS	include/key.h	/^# define NUM_PAD_MINUS	/;"	d
-NUM_PAD_PLUS	include/key.h	/^# define NUM_PAD_PLUS	/;"	d
 OBJ	Makefile	/^OBJ := $(SRC:%.c=$(OBJ_DIR)\/%.o)$/;"	m
 OBJ	libft/Makefile	/^OBJ = $(addprefix $(OBJ_DIR)\/,$(SRC:.c=.o))$/;"	m
 OBJ	minilibx_macos/Makefile	/^OBJ=$(OBJ1:.m=.o)$/;"	m
 OBJ1	minilibx_macos/Makefile	/^OBJ1=$(SRC:.c=.o)$/;"	m
 OBJ_DIR	Makefile	/^OBJ_DIR := obj$/;"	m
 OBJ_DIR	libft/Makefile	/^OBJ_DIR = .\/obj$/;"	m
+OFFSET_STEP	src/keyboard.c	/^#define OFFSET_STEP /;"	d	file:
+P	include/key.h	/^# define P	/;"	d
 PARALLEL	include/fdf.h	/^	PARALLEL$/;"	e	enum:__anon1
 PINK	include/fdf.h	/^# define			PINK	/;"	d
+PLUS	include/key.h	/^# define PLUS	/;"	d
 RETURN	minilibx_macos/mlx_xpm.c	/^#define	RETURN	/;"	d	file:
 SRC	Makefile	/^SRC := main.c draw.c keyboard.c errors.c read_map.c projection.c$/;"	m
 SRC	libft/Makefile	/^SRC = ft_apply.c ft_atoi.c ft_bzero.c ft_foreach.c ft_isalnum.c ft_isalpha.c \\$/;"	m
@@ -103,12 +93,13 @@ bpp	include/fdf.h	/^	int				bpp;$/;"	m	struct:__anon5
 buffer	minilibx_macos/mlx_int.h	/^  char			*buffer;$/;"	m	struct:mlx_img_list_s
 bytes_per_pixel	minilibx_macos/font.c	/^  unsigned int 	 bytes_per_pixel; \/* 2:RGB16, 3:RGB, 4:RGBA *\/ $/;"	m	struct:__anon7	file:
 camera	include/fdf.h	/^	t_camera		*camera;$/;"	m	struct:__anon5
-camera_init	src/projection.c	/^t_camera	*camera_init(t_map *map)$/;"	f
+camera_init	src/main.c	/^t_camera	*camera_init(t_map *map)$/;"	f
 check_line	src/read_map.c	/^void		check_line(char *line)$/;"	f
 col	minilibx_macos/mlx_xpm.c	/^  int           col;$/;"	m	struct:s_xpm_col	file:
 color	include/fdf.h	/^	int				color;$/;"	m	struct:__anon2
 color	minilibx_macos/mlx_xpm.c	/^  int   color;$/;"	m	struct:s_col_name	file:
 color_blend	src/draw.c	/^int			color_blend(int begin, int end, double percentage)$/;"	f
+color_from_percentage	src/draw.c	/^int		color_from_percentage(int start, int end, double percentage)$/;"	f
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content_size	libft/libft.h	/^	size_t			content_size;$/;"	m	struct:s_list
 ctor	libft/vec.h	/^	void	(*ctor)(void *, const void *);$/;"	m	struct:__anon6
@@ -117,13 +108,15 @@ display_log	minilibx_macos/mlx_shaders.c	/^void display_log(GLuint object, void 
 draw_along_x	src/draw.c	/^void		draw_along_x(t_point start, t_point end, t_fdf *fdf,$/;"	f
 draw_along_y	src/draw.c	/^void		draw_along_y(t_point start, t_point end, t_fdf *fdf,$/;"	f
 draw_line	src/draw.c	/^void		draw_line(t_point start, t_point end, t_fdf *fdf)$/;"	f
-draw_map	src/projection.c	/^void	draw_map(t_map *map, t_fdf *fdf)$/;"	f
+draw_map	src/projection.c	/^void	draw_map(t_fdf *fdf)$/;"	f
 dtor	libft/vec.h	/^	void	(*dtor)(void *);$/;"	m	struct:__anon6
 endian	include/fdf.h	/^	int				endian;$/;"	m	struct:__anon5
+events_control	src/keyboard.c	/^void	events_control(t_fdf *fdf)$/;"	f
 exit_err	src/errors.c	/^void	exit_err(char *err_msg)$/;"	f
 fdf_init	src/main.c	/^void	fdf_init(t_map *map, t_fdf *fdf)$/;"	f
 find_color	src/draw.c	/^int		find_color(t_point *current, t_point *begin, t_point *end)$/;"	f
 find_list	libft/get_next_line.c	/^t_list	*find_list(t_list **head, int fd)$/;"	f
+find_vertex_color	src/draw.c	/^int		find_vertex_color(int max, int min, int current)$/;"	f
 font	minilibx_macos/mlx_int.h	/^  mlx_img_list_t	*font;$/;"	m	struct:mlx_ptr_s
 font_atlas	minilibx_macos/font.c	/^} font_atlas = {$/;"	v	typeref:struct:__anon7	file:
 font_fshader	minilibx_macos/mlx_int.h	/^  GLuint	font_fshader;$/;"	m	struct:glsl_info_s
@@ -228,7 +221,7 @@ img_list	minilibx_macos/mlx_int.h	/^  mlx_img_list_t	*img_list;$/;"	m	struct:mlx
 img_ptr	include/fdf.h	/^	int				*img_ptr;$/;"	m	struct:__anon5
 iso	src/projection.c	/^void	iso(t_point *p)$/;"	f
 item_size	libft/vec.h	/^	size_t	item_size;$/;"	m	struct:__anon6
-key_hook	src/keyboard.c	/^int	key_hook(int keycode, void *mlx)$/;"	f
+key_hook	src/keyboard.c	/^int		key_hook(int keycode, t_fdf *fdf)$/;"	f
 line_size	include/fdf.h	/^	int				line_size;$/;"	m	struct:__anon5
 loc_font_atlassize	minilibx_macos/mlx_int.h	/^  GLint		loc_font_atlassize;$/;"	m	struct:glsl_info_s
 loc_font_color	minilibx_macos/mlx_int.h	/^  GLint		loc_font_color;$/;"	m	struct:glsl_info_s
@@ -251,6 +244,7 @@ loop_hook_data	minilibx_macos/mlx_int.h	/^  void			*loop_hook_data;$/;"	m	struct
 loop_timer	minilibx_macos/mlx_int.h	/^  void			*loop_timer;$/;"	m	struct:mlx_ptr_s
 main	src/main.c	/^int main(int argc, char **argv)$/;"	f
 main_loop_active	minilibx_macos/mlx_int.h	/^  int			main_loop_active;$/;"	m	struct:mlx_ptr_s
+map	include/fdf.h	/^	t_map			*map;$/;"	m	struct:__anon5
 max_size	libft/vec.h	/^	ssize_t	max_size;$/;"	m	struct:__anon6
 max_z	include/fdf.h	/^	int				max_z;$/;"	m	struct:__anon3
 min_z	include/fdf.h	/^	int				min_z;$/;"	m	struct:__anon3
@@ -280,6 +274,7 @@ mlx_win_list_s	minilibx_macos/mlx_int.h	/^typedef struct	mlx_win_list_s$/;"	s
 mlx_win_list_t	minilibx_macos/mlx_int.h	/^} mlx_win_list_t;$/;"	t	typeref:struct:mlx_win_list_s
 mlx_xpm_file_to_image	minilibx_macos/mlx_xpm.c	/^void	*mlx_xpm_file_to_image(mlx_ptr_t *xvar,char *file,int *width,int *height)$/;"	f
 mlx_xpm_to_image	minilibx_macos/mlx_xpm.c	/^void	*mlx_xpm_to_image(mlx_ptr_t *xvar,char **xpm_data,int *width,int *height)$/;"	f
+mouse_hook	src/keyboard.c	/^int		mouse_hook(int button, int x, int y, t_fdf *fdf)$/;"	f
 myatoi	src/read_map.c	/^void	myatoi(void *elem, const char *from, const char *to)$/;"	f
 name	minilibx_macos/mlx_xpm.c	/^  char  *name;$/;"	m	struct:s_col_name	file:
 name	minilibx_macos/mlx_xpm.c	/^  int           name;$/;"	m	struct:s_xpm_col	file:
@@ -297,7 +292,7 @@ pixel_program	minilibx_macos/mlx_int.h	/^  GLuint	pixel_program;$/;"	m	struct:gl
 pixel_vshader	minilibx_macos/mlx_int.h	/^  GLuint	pixel_vshader;$/;"	m	struct:glsl_info_s
 pixmgt	minilibx_macos/mlx_int.h	/^  int			pixmgt;$/;"	m	struct:mlx_win_list_s
 projection	include/fdf.h	/^	t_projection	projection;$/;"	m	struct:__anon4
-projection	src/projection.c	/^t_point	projection(t_point *p, t_fdf *fdf)$/;"	f
+projection	src/projection.c	/^t_point	projection(t_point *p, t_fdf *fdf, t_map *map)$/;"	f
 put_pixels_on_ends	src/draw.c	/^void		put_pixels_on_ends(t_point start,t_point end, t_fdf *fdf)$/;"	f
 quick_sort	libft/ft_qsort.c	/^static inline void	quick_sort(void *left, void *right, size_t size,$/;"	f	file:
 ratio_z	include/fdf.h	/^	int				ratio_z;$/;"	m	struct:__anon4
@@ -308,6 +303,7 @@ rotate_z	src/projection.c	/^void	rotate_z(t_point *p, double alpha)$/;"	f
 s_col_name	minilibx_macos/mlx_xpm.c	/^struct  s_col_name$/;"	s	file:
 s_list	libft/libft.h	/^typedef struct		s_list$/;"	s
 s_xpm_col	minilibx_macos/mlx_xpm.c	/^typedef struct  s_xpm_col$/;"	s	file:
+set_background	src/draw.c	/^void	set_background(t_fdf *fdf)$/;"	f
 size	libft/vec.h	/^	ssize_t	size;$/;"	m	struct:__anon6
 straight_line	src/draw.c	/^static void	straight_line(t_point start, t_point end, t_fdf *fdf)$/;"	f	file:
 t_camera	include/fdf.h	/^}					t_camera;$/;"	t	typeref:struct:__anon4

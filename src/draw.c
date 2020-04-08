@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 18:21:21 by diona             #+#    #+#             */
-/*   Updated: 2020/04/03 17:11:44 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/08 23:59:24 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,21 @@ int			color_blend(int begin, int end, double percentage)
     return ((int)((1 - percentage) * begin + percentage * end));
 }
 
-int		find_color(t_point *current, t_point *begin, t_point *end)
+int		color_from_percentage(int start, int end, double percentage)
 {
-	double	percentage;
 	int		red;
 	int		green;
 	int		blue;
+
+	red = color_blend((start >> 16) & 0xff, (end >> 16) & 0xff, percentage);
+	green = color_blend((start >> 8) & 0xff, (end >> 8) & 0xff, percentage);
+	blue = color_blend(start & 0xff, end & 0xff, percentage);
+	return ((red << 16) | (green << 8) | blue);
+}
+
+int		find_color(t_point *current, t_point *begin, t_point *end)
+{
+	double	percentage;
 
 	if (abs(end->x - begin->x) > abs(end->y - begin->y))
 		percentage = ((end->x - begin->x) == 0) ? 1.0 :
@@ -30,10 +39,16 @@ int		find_color(t_point *current, t_point *begin, t_point *end)
 	else
 		percentage = ((end->y - begin->y) == 0) ? 1.0 :
 			((double)(current->y - begin->y) / (double)(end->y - begin->y));
-	red = color_blend((begin->color >> 16) & 0xff, (end->color >> 16) & 0xff, percentage);
-	green = color_blend((begin->color >> 8) & 0xff, (end->color >> 8) & 0xff, percentage);
-	blue = color_blend((begin->color) & 0xff, (end->color) & 0xff, percentage);
-	return ((red << 16) | (green << 8) | blue);
+	return (color_from_percentage(begin->color, end->color, percentage));
+}
+
+int		find_vertex_color(int max, int min, int current)
+{
+	double	percentage;
+
+	percentage = (max - min == 0) ? 1.0 :
+		((double)(current - min) / (double)(max - min));
+	return (color_from_percentage(PINK, TURQUOISE, percentage));
 }
 
 int		get_opacity(int color, double opacity)
@@ -53,10 +68,10 @@ static void	straight_line(t_point start, t_point end, t_fdf *fdf)
 	current = start;
 	if (start.x > end.x || start.y > end.y)
 		delta *= -1;
-	if (start.x == end.x)
+	if (start.x == end.x && current.x < WIN_WIDTH)
 	{
 		current.y += delta;
-		while (current.y != end.y)
+		while (current.y != end.y && current.y < WIN_HEIGHT)
 		{
 			current.color = find_color(&current, &start, &end);
 			fdf->img_ptr[current.y * WIN_WIDTH + current.x] =
@@ -64,10 +79,10 @@ static void	straight_line(t_point start, t_point end, t_fdf *fdf)
 			current.y += delta;
 		}
 	}
-	else if (start.y == end.y)
+	else if (start.y == end.y && current.y < WIN_HEIGHT)
 	{
 		current.x += delta;
-		while (current.x != end.x)
+		while (current.x != end.x && current.x < WIN_WIDTH)
 		{
 			current.color = find_color(&current, &start, &end);
 			fdf->img_ptr[current.y * WIN_WIDTH + current.x] =
@@ -87,9 +102,7 @@ void		draw_along_y(t_point start, t_point end, t_fdf *fdf,
 	x = start.x;
 	if (start.x > end.x)
 		delta_err = -delta_err;
-	// current.y++;
-	// x += delta_err;
-	while (current.y < end.y)
+	while (current.y < end.y && current.y < WIN_HEIGHT)
 	{
 		current.color = find_color(&current, &start, &end);
 		fdf->img_ptr[(int)(current.y * WIN_WIDTH + floor(x))] =
@@ -113,9 +126,7 @@ void		draw_along_x(t_point start, t_point end, t_fdf *fdf,
 	y = start.y;
 	if (start.y > end.y)
 		delta_err = -delta_err;
-	// current.x++;
-	// y += delta_err;
-	while (current.x < end.x)
+	while (current.x < end.x && current.x < WIN_WIDTH)
 	{
 		current.color = find_color(&current, &start, &end);
 		fdf->img_ptr[(int)(floor(y) * WIN_WIDTH + current.x)] =
@@ -135,6 +146,16 @@ void		put_pixels_on_ends(t_point start,t_point end, t_fdf *fdf)
 		mlx_get_color_value(fdf->mlx, start.color);
 	fdf->img_ptr[end.y * WIN_WIDTH + end.x] =
 		mlx_get_color_value(fdf->mlx, end.color);
+}
+
+void	set_background(t_fdf *fdf)
+{
+	// int	i;
+
+	ft_bzero(fdf->img_ptr, sizeof(int) * WIN_WIDTH * WIN_HEIGHT);
+	// i = 0;
+	// while (i < WIN_WIDTH * WIN_HEIGHT)
+	// 	fdf->back_ptr[i++] = mlx_get_color_value(fdf->mlx, BACKGROUND);
 }
 
 void		draw_line(t_point start, t_point end, t_fdf *fdf)

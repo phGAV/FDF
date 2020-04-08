@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 18:05:46 by diona             #+#    #+#             */
-/*   Updated: 2020/03/16 18:12:10 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/08 22:04:05 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,33 @@
 # define ARROW_LEFT			123
 # define ARROW_RIGHT		124
 
-# define NUM_PAD_0			82
-# define NUM_PAD_1			83
-# define NUM_PAD_2			84
-# define NUM_PAD_3			85
-# define NUM_PAD_4			86
-# define NUM_PAD_5			87
-# define NUM_PAD_6			88
-# define NUM_PAD_7			89
-# define NUM_PAD_8			91
-# define NUM_PAD_9			92
-# define NUM_PAD_PLUS		69
-# define NUM_PAD_MINUS		78
+// # define NUM_PAD_0			82
+// # define NUM_PAD_1			83
+// # define NUM_PAD_2			84
+// # define NUM_PAD_3			85
+// # define NUM_PAD_4			86
+// # define NUM_PAD_5			87
+// # define NUM_PAD_6			88
+// # define NUM_PAD_7			89
+// # define NUM_PAD_8			91
+// # define NUM_PAD_9			92
+// # define NUM_PAD_PLUS		69
+// # define NUM_PAD_MINUS		78
 
-# define MAIN_PAD_I			34
-# define MAIN_PAD_P			35
-# define MAIN_PAD_0			29
-# define MAIN_PAD_1			18
-# define MAIN_PAD_2			19
-# define MAIN_PAD_3			20
-# define MAIN_PAD_4			21
-# define MAIN_PAD_5			23
-# define MAIN_PAD_6			22
-# define MAIN_PAD_7			26
-# define MAIN_PAD_8			28
-# define MAIN_PAD_9			25
-# define MAIN_PAD_PLUS		24
-# define MAIN_PAD_MINUS		27
+# define I			34
+# define P			35
+# define KEY_0			29
+# define KEY_1			18
+# define KEY_2			19
+# define KEY_3			20
+# define KEY_4			21
+# define KEY_5			23
+# define KEY_6			22
+# define KEY_7			26
+# define KEY_8			28
+# define KEY_9			25
+# define PLUS		24
+# define MINUS		27
 
 /*  kVK_ANSI_Equal                = 0x18,*/
 /*  kVK_ANSI_Minus                = 0x1B,*/
