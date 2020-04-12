@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 16:55:03 by diona             #+#    #+#             */
-/*   Updated: 2020/04/08 23:55:26 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/10 23:06:20 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ typedef struct {
 	void			*window;
 	void			*image;
 	int				*img_ptr;
-	// void			*back;
-	// int				*back_ptr;
 	int				bpp;
 	int				line_size;
 	int				endian;
@@ -81,11 +79,11 @@ typedef struct {
 
 void				set_background(t_fdf *fdf);
 void				draw_line(t_point start, t_point end, t_fdf *fdf);
-// int					key_hook(int keycode, void *mlx);
 void				exit_err(char *err_msg);
-void				read_map(char *file, t_map *map);
+void				read_map(int fd, t_map *map);
 void				draw_map(t_fdf *fdf);
 int					find_vertex_color(int max, int min, int current);
 void				events_control(t_fdf *fdf);
+void				camera_reset(t_camera *camera, t_map *map);
 
 #endif

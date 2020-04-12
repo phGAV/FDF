@@ -6,30 +6,32 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 18:06:16 by diona             #+#    #+#             */
-/*   Updated: 2020/04/09 00:25:44 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/11 01:25:26 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_camera	*camera_init(t_map *map)
+void		camera_reset(t_camera *camera, t_map *map)
 {
-	t_camera	*camera;
 	int			y_scale;
 	int			x_scale;
 
-	camera = ft_malloc(sizeof(t_camera));
+	ft_bzero(camera, sizeof(t_camera));
 	y_scale = WIN_HEIGHT / map->height / 2;
 	x_scale = WIN_WIDTH / map->width / 2;
-	camera->projection = ISO;
-	camera->angle_x = 0;
-	camera->angle_y = 0;
-	camera->angle_z = 0;
 	camera->zoom = x_scale > y_scale ? y_scale : x_scale;
-	camera->ratio_z = (WIN_HEIGHT - map->height * camera->zoom) /
-		(map->max_z - map->min_z) / 4;
-	camera->offset_x = 0;
-	camera->offset_y = 0;
+	camera->ratio_z = (map->max_z - map->min_z == 0) ? 1 :
+		(WIN_HEIGHT - map->height * camera->zoom) /
+		(map->max_z - map->min_z) / 2;
+}
+
+t_camera	*camera_init(t_map *map)
+{
+	t_camera	*camera;
+
+	camera = ft_malloc(sizeof(t_camera));
+	camera_reset(camera, map);
 	return (camera);
 }
 
@@ -47,19 +49,21 @@ void	fdf_init(t_map *map, t_fdf *fdf)
 	draw_map(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
 	events_control(fdf);
-	// mlx_loop(fdf->mlx);
 }
 
 int main(int argc, char **argv)
 {
 	t_map	map;
 	t_fdf	fdf;
+	int		fd;
 
 	if (argc != 2)
 		exit_err(USAGE);
+	if ((fd = open(argv[1], O_RDONLY)) < 0)
+		exit_err(FILE_OPEN);
 	ft_bzero(&map, sizeof(t_map));
 	ft_bzero(&fdf, sizeof(t_fdf));
-	read_map(argv[1], &map);
+	read_map(fd, &map);
 	fdf_init(&map, &fdf);
 	return (0);
 }

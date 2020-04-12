@@ -6,12 +6,18 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 18:05:46 by diona             #+#    #+#             */
-/*   Updated: 2020/04/08 22:04:05 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/13 00:44:55 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEY_H
 # define KEY_H
+
+# define OFFSET_STEP		10
+# define ANGLE_STEP			0.1
+
+# define MAX_ZOOM			400
+# define MIN_ZOOM			4
 
 # define ESC				0x35
 # define MOUSE_LEFT_BUTTON	1

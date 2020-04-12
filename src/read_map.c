@@ -6,43 +6,43 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 00:59:37 by diona             #+#    #+#             */
-/*   Updated: 2020/04/01 21:50:21 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/11 01:05:24 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	myatoi(void *elem, const char *from, const char *to)
+void	myatoi(void *elem, const char *begin, const char *end)
 {
-	(void)to;
-	*(int *)elem = ft_atoi(from);
-}
+	int		n;
+	int		neg;
 
-void		check_line(char *line)
-{
-	while (*line)
+	n = 0;
+	neg = 1;
+	if (*begin == '-' || *begin == '+')
 	{
-		if (!ft_isspace(*line) && !ft_isdigit(*line) && *line != '-')
-			exit_err(MAP_ERR);
-		line++;
+		if (*begin == '-')
+			neg = -neg;
+		begin++;
 	}
+	while (ft_isdigit(*begin))
+		n = n * 10 + *begin++ - '0';
+	if (begin != end)
+		exit_err(MAP_ERR);
+	*(int *)elem = neg * n;
 }
 
-void		read_map(char *file, t_map *map)
+void		read_map(int fd, t_map *map)
 {
 	t_vec	*v_num;
 	t_vec	*v_add;
-	int		fd;
 	char	*line;
 	int		gnl;
 	ssize_t	x;
 	ssize_t	y;
 
-	if ((fd = open(file, O_RDONLY)) < 0)
-		exit_err(FILE_OPEN);
 	while ((gnl = get_next_line(fd, &line)))
 	{
-		check_line(line);
 		map->height++;
 		if (map->height == 1)
 		{
@@ -78,18 +78,18 @@ void		read_map(char *file, t_map *map)
 		}
 		y++;
 	}
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			printf("%3d", map->vertex[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
+	// y = 0;
+	// while (y < map->height)
+	// {
+	// 	x = 0;
+	// 	while (x < map->width)
+	// 	{
+	// 		printf("%3d", map->vertex[y][x]);
+	// 		x++;
+	// 	}
+	// 	printf("\n");
+	// 	y++;
+	// }
 	vec_free(v_num);
 	close(fd);
 	if (gnl < 0)

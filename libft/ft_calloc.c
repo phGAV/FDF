@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/30 14:45:40 by diona             #+#    #+#             */
-/*   Updated: 2020/04/09 23:58:42 by diona            ###   ########.fr       */
+/*   Created: 2019/09/06 09:34:43 by ourgot            #+#    #+#             */
+/*   Updated: 2019/11/27 07:11:38 by ourgot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <sys/errno.h>
+#include <stddef.h>
 
-void	exit_err(char *err_msg)
+#include "libft.h"
+
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	if (errno == 0)
-	{
-		write(STDERR_FILENO, err_msg, ft_strlen(err_msg));
-		write(STDERR_FILENO, "\n", 1);
-		exit(1);
-	}
-	perror(err_msg);
-	exit(EXIT_FAILURE);
+	void *dst;
+
+	if ((dst = ft_malloc(nmemb * size)))
+		ft_memset(dst, 0, nmemb * size);
+	return (dst);
 }

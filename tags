@@ -4,6 +4,7 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+ANGLE_STEP	include/key.h	/^# define ANGLE_STEP	/;"	d
 ARROW_DOWN	include/key.h	/^# define ARROW_DOWN	/;"	d
 ARROW_LEFT	include/key.h	/^# define ARROW_LEFT	/;"	d
 ARROW_RIGHT	include/key.h	/^# define ARROW_RIGHT	/;"	d
@@ -47,8 +48,10 @@ LIBFT_LIB	Makefile	/^LIBFT_LIB := $(LIBFT_DIR)\/libft.a$/;"	m
 MAP_ERR	include/errors.h	/^# define MAP_ERR	/;"	d
 MAX_EVENT	minilibx_macos/mlx_int.h	/^#define	MAX_EVENT	/;"	d
 MAX_PIXEL_NB	minilibx_macos/mlx_int.h	/^#define MAX_PIXEL_NB	/;"	d
+MAX_ZOOM	include/key.h	/^# define MAX_ZOOM	/;"	d
 MEMORY	include/errors.h	/^# define MEMORY	/;"	d
 MINUS	include/key.h	/^# define MINUS	/;"	d
+MIN_ZOOM	include/key.h	/^# define MIN_ZOOM	/;"	d
 MLX_DIR	Makefile	/^MLX_DIR := minilibx_macos$/;"	m
 MLX_FLAGS	Makefile	/^MLX_FLAGS := -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit$/;"	m
 MLX_H	minilibx_macos/mlx.h	/^#define	MLX_H$/;"	d
@@ -68,14 +71,14 @@ OBJ	minilibx_macos/Makefile	/^OBJ=$(OBJ1:.m=.o)$/;"	m
 OBJ1	minilibx_macos/Makefile	/^OBJ1=$(SRC:.c=.o)$/;"	m
 OBJ_DIR	Makefile	/^OBJ_DIR := obj$/;"	m
 OBJ_DIR	libft/Makefile	/^OBJ_DIR = .\/obj$/;"	m
-OFFSET_STEP	src/keyboard.c	/^#define OFFSET_STEP /;"	d	file:
+OFFSET_STEP	include/key.h	/^# define OFFSET_STEP	/;"	d
 P	include/key.h	/^# define P	/;"	d
 PARALLEL	include/fdf.h	/^	PARALLEL$/;"	e	enum:__anon1
 PINK	include/fdf.h	/^# define			PINK	/;"	d
 PLUS	include/key.h	/^# define PLUS	/;"	d
 RETURN	minilibx_macos/mlx_xpm.c	/^#define	RETURN	/;"	d	file:
 SRC	Makefile	/^SRC := main.c draw.c keyboard.c errors.c read_map.c projection.c$/;"	m
-SRC	libft/Makefile	/^SRC = ft_apply.c ft_atoi.c ft_bzero.c ft_foreach.c ft_isalnum.c ft_isalpha.c \\$/;"	m
+SRC	libft/Makefile	/^SRC = ft_apply.c ft_atoi.c ft_bzero.c ft_calloc.c ft_foreach.c ft_isalnum.c ft_isalpha.c \\$/;"	m
 SRC	minilibx_macos/Makefile	/^SRC= mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c$/;"	m
 SRC_DIR	libft/Makefile	/^SRC_DIR = .\/$/;"	m
 TURQUOISE	include/fdf.h	/^# define			TURQUOISE	/;"	d
@@ -94,7 +97,7 @@ buffer	minilibx_macos/mlx_int.h	/^  char			*buffer;$/;"	m	struct:mlx_img_list_s
 bytes_per_pixel	minilibx_macos/font.c	/^  unsigned int 	 bytes_per_pixel; \/* 2:RGB16, 3:RGB, 4:RGBA *\/ $/;"	m	struct:__anon7	file:
 camera	include/fdf.h	/^	t_camera		*camera;$/;"	m	struct:__anon5
 camera_init	src/main.c	/^t_camera	*camera_init(t_map *map)$/;"	f
-check_line	src/read_map.c	/^void		check_line(char *line)$/;"	f
+camera_reset	src/main.c	/^void		camera_reset(t_camera *camera, t_map *map)$/;"	f
 col	minilibx_macos/mlx_xpm.c	/^  int           col;$/;"	m	struct:s_xpm_col	file:
 color	include/fdf.h	/^	int				color;$/;"	m	struct:__anon2
 color	minilibx_macos/mlx_xpm.c	/^  int   color;$/;"	m	struct:s_col_name	file:
@@ -125,6 +128,7 @@ font_vshader	minilibx_macos/mlx_int.h	/^  GLuint	font_vshader;$/;"	m	struct:glsl
 ft_apply	libft/ft_apply.c	/^void	ft_apply(void *data, size_t len, size_t size, void (*f)(void *))$/;"	f
 ft_atoi	libft/ft_atoi.c	/^int		ft_atoi(const char *str)$/;"	f
 ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
+ft_calloc	libft/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f
 ft_count_w	libft/ft_strsplit.c	/^static size_t	ft_count_w(char const *s, char c)$/;"	f	file:
 ft_del	libft/ft_lstmap.c	/^static void	ft_del(void *data, size_t size)$/;"	f	file:
 ft_digit	libft/ft_itoa.c	/^static int	ft_digit(int n)$/;"	f	file:
@@ -275,7 +279,7 @@ mlx_win_list_t	minilibx_macos/mlx_int.h	/^} mlx_win_list_t;$/;"	t	typeref:struct
 mlx_xpm_file_to_image	minilibx_macos/mlx_xpm.c	/^void	*mlx_xpm_file_to_image(mlx_ptr_t *xvar,char *file,int *width,int *height)$/;"	f
 mlx_xpm_to_image	minilibx_macos/mlx_xpm.c	/^void	*mlx_xpm_to_image(mlx_ptr_t *xvar,char **xpm_data,int *width,int *height)$/;"	f
 mouse_hook	src/keyboard.c	/^int		mouse_hook(int button, int x, int y, t_fdf *fdf)$/;"	f
-myatoi	src/read_map.c	/^void	myatoi(void *elem, const char *from, const char *to)$/;"	f
+myatoi	src/read_map.c	/^void	myatoi(void *elem, const char *begin, const char *end)$/;"	f
 name	minilibx_macos/mlx_xpm.c	/^  char  *name;$/;"	m	struct:s_col_name	file:
 name	minilibx_macos/mlx_xpm.c	/^  int           name;$/;"	m	struct:s_xpm_col	file:
 nb_flush	minilibx_macos/mlx_int.h	/^  int			nb_flush;$/;"	m	struct:mlx_win_list_s
@@ -292,11 +296,11 @@ pixel_program	minilibx_macos/mlx_int.h	/^  GLuint	pixel_program;$/;"	m	struct:gl
 pixel_vshader	minilibx_macos/mlx_int.h	/^  GLuint	pixel_vshader;$/;"	m	struct:glsl_info_s
 pixmgt	minilibx_macos/mlx_int.h	/^  int			pixmgt;$/;"	m	struct:mlx_win_list_s
 projection	include/fdf.h	/^	t_projection	projection;$/;"	m	struct:__anon4
-projection	src/projection.c	/^t_point	projection(t_point *p, t_fdf *fdf, t_map *map)$/;"	f
+projection	src/projection.c	/^t_point	projection(t_point *p, t_fdf *fdf)$/;"	f
 put_pixels_on_ends	src/draw.c	/^void		put_pixels_on_ends(t_point start,t_point end, t_fdf *fdf)$/;"	f
 quick_sort	libft/ft_qsort.c	/^static inline void	quick_sort(void *left, void *right, size_t size,$/;"	f	file:
 ratio_z	include/fdf.h	/^	int				ratio_z;$/;"	m	struct:__anon4
-read_map	src/read_map.c	/^void		read_map(char *file, t_map *map)$/;"	f
+read_map	src/read_map.c	/^void		read_map(int fd, t_map *map)$/;"	f
 rotate_x	src/projection.c	/^void	rotate_x(t_point *p, double alpha)$/;"	f
 rotate_y	src/projection.c	/^void	rotate_y(t_point *p, double alpha)$/;"	f
 rotate_z	src/projection.c	/^void	rotate_z(t_point *p, double alpha)$/;"	f

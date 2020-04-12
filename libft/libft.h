@@ -6,7 +6,7 @@
 /*   By: diona <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 14:59:11 by diona             #+#    #+#             */
-/*   Updated: 2020/03/31 17:10:54 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/10 22:17:50 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_list
 int					ft_atoi(const char *str);
 void				ft_apply(void *data, size_t len, size_t size, void (*f)(void *));
 void				ft_bzero(void *s, size_t n);
+void				*ft_calloc(size_t nmemb, size_t size);
 void				ft_foreach(int *tab, int length, void (*f)(int));
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
