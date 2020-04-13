@@ -45,6 +45,9 @@ fclean: clean
 
 re: fclean all
 
+test: all
+	@./fdf test_maps/basictest.fdf
+
 love:
 	@echo 'not war'
 

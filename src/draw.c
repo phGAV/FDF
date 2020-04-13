@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 18:21:21 by diona             #+#    #+#             */
-/*   Updated: 2020/04/13 00:27:57 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/14 01:01:23 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,8 @@ void		draw_line(t_point start, t_point end, t_fdf *fdf)
 	double		delta_y;
 	double		delta_err;
 
+	if (start.x == end.x && start.y == end.y)
+		return ;
 	put_pixels_on_ends(start, end, fdf);
 	if (start.x == end.x || start.y == end.y)
 		straight_line(start, end, fdf);

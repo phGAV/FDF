@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 01:22:55 by diona             #+#    #+#             */
-/*   Updated: 2020/04/12 23:17:08 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/13 01:56:00 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ t_point	projection(t_point *p, t_fdf *fdf)
 		iso(p);
 	p->x += WIN_WIDTH / 2 + fdf->camera->offset_x;
 	p->y += WIN_HEIGHT / 2 + fdf->camera->offset_y;
-	// p->y += WIN_HEIGHT / 2 + fdf->camera->offset_y +
-	// 	fdf->map->max_z * fdf->camera->ratio_z / 2;
 	return (*p);
 }
 
