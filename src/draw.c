@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 18:21:21 by diona             #+#    #+#             */
-/*   Updated: 2020/04/14 01:01:23 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/14 02:15:59 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@ int		get_opacity(int color, double opacity)
 	return ((alpha << 24) | color);
 }
 
+void		put_pixel(t_fdf *fdf, int x, int y, int color)
+{
+	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
+	{
+		fdf->img_ptr[y * WIN_WIDTH + x] =
+			mlx_get_color_value(fdf->mlx, color);
+	}
+}
+
 static void	straight_line(t_point start, t_point end, t_fdf *fdf)
 {
 	t_point		current;
@@ -68,33 +77,14 @@ static void	straight_line(t_point start, t_point end, t_fdf *fdf)
 	current = start;
 	if (start.x > end.x || start.y > end.y)
 		delta *= -1;
-	if (start.x == end.x && current.x < WIN_WIDTH && current.x >= 0)
+	while (current.y != end.y || current.x != end.x)
 	{
-		current.y += delta;
-		while (current.y != end.y)
-		{
-			if (current.y < WIN_HEIGHT && current.y >= 0)
-			{
-				current.color = find_color(&current, &start, &end);
-				fdf->img_ptr[current.y * WIN_WIDTH + current.x] =
-					mlx_get_color_value(fdf->mlx, current.color);
-			}
+		if (start.x == end.x)
 			current.y += delta;
-		}
-	}
-	else if (start.y == end.y && current.y < WIN_HEIGHT && current.y >= 0)
-	{
-		current.x += delta;
-		while (current.x != end.x)
-		{
-			if (current.x < WIN_WIDTH && current.x >= 0)
-			{
-				current.color = find_color(&current, &start, &end);
-				fdf->img_ptr[current.y * WIN_WIDTH + current.x] =
-					mlx_get_color_value(fdf->mlx, current.color);
-			}
+		else
 			current.x += delta;
-		}
+		current.color = find_color(&current, &start, &end);
+		put_pixel(fdf, current.x, current.y, current.color);
 	}
 }
 
@@ -110,16 +100,11 @@ void		draw_along_y(t_point start, t_point end, t_fdf *fdf,
 		delta_err = -delta_err;
 	while (current.y < end.y)
 	{
-		if (current.y >= 0 && current.y < WIN_HEIGHT && x >= 0 && x < WIN_WIDTH)
-		{
-			current.color = find_color(&current, &start, &end);
-			fdf->img_ptr[(int)(current.y * WIN_WIDTH + floor(x))] =
-				mlx_get_color_value(fdf->mlx,
-						get_opacity(current.color, 1 - (x - floor(x))));
-			fdf->img_ptr[(int)(current.y * WIN_WIDTH + floor(x) + 1)] =
-				mlx_get_color_value(fdf->mlx,
-						get_opacity(current.color, x - floor(x)));
-		}
+		current.color = find_color(&current, &start, &end);
+		put_pixel(fdf, (int)floor(x), current.y,
+			get_opacity(current.color, 1 - (x - floor(x))));
+		put_pixel(fdf, (int)(floor(x) + 1), current.y,
+			get_opacity(current.color, x - floor(x)));
 		current.y++;
 		x += delta_err;
 	}
@@ -137,41 +122,19 @@ void		draw_along_x(t_point start, t_point end, t_fdf *fdf,
 		delta_err = -delta_err;
 	while (current.x < end.x)
 	{
-		if (current.x >= 0 && current.x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
-		{
-			current.color = find_color(&current, &start, &end);
-			fdf->img_ptr[(int)(floor(y) * WIN_WIDTH + current.x)] =
-				mlx_get_color_value(fdf->mlx,
-						get_opacity(current.color, 1 - (y - floor(y))));
-			fdf->img_ptr[(int)((floor(y) + 1) * WIN_WIDTH + current.x)] =
-				mlx_get_color_value(fdf->mlx,
-						get_opacity(current.color, y - floor(y)));
-		}
+		current.color = find_color(&current, &start, &end);
+		put_pixel(fdf, current.x, (int)floor(y),
+				get_opacity(current.color, 1 - (y - floor(y))));
+		put_pixel(fdf, current.x, (int)floor(y) + 1,
+				get_opacity(current.color, y - floor(y)));
 		current.x++;
 		y += delta_err;
 	}
 }
 
-void		put_pixels_on_ends(t_point start,t_point end, t_fdf *fdf)
-{
-	if (start.y >= 0 && start.x >= 0 &&
-			start.y < WIN_HEIGHT && start.x < WIN_WIDTH)
-		fdf->img_ptr[start.y * WIN_WIDTH + start.x] =
-			mlx_get_color_value(fdf->mlx, start.color);
-	if (end.y >= 0 && end.x >= 0 &&
-			end.y < WIN_HEIGHT && end.x < WIN_WIDTH)
-		fdf->img_ptr[end.y * WIN_WIDTH + end.x] =
-			mlx_get_color_value(fdf->mlx, end.color);
-}
-
 void	set_background(t_fdf *fdf)
 {
-	// int	i;
-
 	ft_bzero(fdf->img_ptr, sizeof(int) * WIN_WIDTH * WIN_HEIGHT);
-	// i = 0;
-	// while (i < WIN_WIDTH * WIN_HEIGHT)
-	// 	fdf->back_ptr[i++] = mlx_get_color_value(fdf->mlx, BACKGROUND);
 }
 
 void		draw_line(t_point start, t_point end, t_fdf *fdf)
@@ -182,7 +145,6 @@ void		draw_line(t_point start, t_point end, t_fdf *fdf)
 
 	if (start.x == end.x && start.y == end.y)
 		return ;
-	put_pixels_on_ends(start, end, fdf);
 	if (start.x == end.x || start.y == end.y)
 		straight_line(start, end, fdf);
 	else

@@ -297,7 +297,7 @@ pixel_vshader	minilibx_macos/mlx_int.h	/^  GLuint	pixel_vshader;$/;"	m	struct:gl
 pixmgt	minilibx_macos/mlx_int.h	/^  int			pixmgt;$/;"	m	struct:mlx_win_list_s
 projection	include/fdf.h	/^	t_projection	projection;$/;"	m	struct:__anon4
 projection	src/projection.c	/^t_point	projection(t_point *p, t_fdf *fdf)$/;"	f
-put_pixels_on_ends	src/draw.c	/^void		put_pixels_on_ends(t_point start,t_point end, t_fdf *fdf)$/;"	f
+put_pixel	src/draw.c	/^void		put_pixel(t_fdf *fdf, int x, int y, int color)$/;"	f
 quick_sort	libft/ft_qsort.c	/^static inline void	quick_sort(void *left, void *right, size_t size,$/;"	f	file:
 ratio_z	include/fdf.h	/^	int				ratio_z;$/;"	m	struct:__anon4
 read_map	src/read_map.c	/^void		read_map(int fd, t_map *map)$/;"	f

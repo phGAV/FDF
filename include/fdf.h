@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 16:55:03 by diona             #+#    #+#             */
-/*   Updated: 2020/04/10 23:06:20 by diona            ###   ########.fr       */
+/*   Updated: 2020/04/14 02:14:08 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define			WHITE		0x00FFFFFF
 # define			PINK		0x00FF3DEA
 # define			TURQUOISE	0x0000FFEC
-# define			BACKGROUND	0x001E296F
+# define			BACKGROUND	0x00131313
 
 typedef enum {
 	ISO,
