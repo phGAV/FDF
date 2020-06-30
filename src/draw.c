@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 18:21:21 by diona             #+#    #+#             */
-/*   Updated: 2020/04/14 02:15:59 by diona            ###   ########.fr       */
+/*   Updated: 2020/06/29 23:43:08 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,8 @@ int		get_opacity(int color, double opacity)
 void		put_pixel(t_fdf *fdf, int x, int y, int color)
 {
 	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
-	{
 		fdf->img_ptr[y * WIN_WIDTH + x] =
 			mlx_get_color_value(fdf->mlx, color);
-	}
 }
 
 static void	straight_line(t_point start, t_point end, t_fdf *fdf)

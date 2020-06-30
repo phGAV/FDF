@@ -6,15 +6,20 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 18:05:46 by diona             #+#    #+#             */
-/*   Updated: 2020/04/13 01:54:01 by diona            ###   ########.fr       */
+/*   Updated: 2020/06/30 00:04:09 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEY_H
 # define KEY_H
 
+# include "fdf.h"
+
+# define KEYBOARD_MAX 127
+
 # define OFFSET_STEP		10
-# define ANGLE_STEP			0.1
+# define ANGLE_STEP_ORTO	1.57
+# define ANGLE_STEP			0.2
 
 # define MAX_ZOOM			400
 # define MIN_ZOOM			4
@@ -77,5 +82,13 @@
 /*  kVK_RightArrow                = 0x7C,*/
 /*  kVK_DownArrow                 = 0x7D,*/
 /*  kVK_UpArrow                   = 0x7E*/
+typedef void (*t_shortcut)(t_fdf *, int);
 
+void	move_side(t_fdf *fdf, int keycode);
+void	move_up(t_fdf *fdf, int keycode);
+void	change_angle_x(t_fdf *fdf, int keycode);
+void	change_angle_y(t_fdf *fdf, int keycode);
+void	change_angle_z(t_fdf *fdf, int keycode);
+void	change_projection(t_fdf *fdf, int keycode);
+void	flatten(t_fdf *fdf, int keycode);
 #endif

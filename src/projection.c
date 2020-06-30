@@ -6,17 +6,18 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 01:22:55 by diona             #+#    #+#             */
-/*   Updated: 2020/04/13 01:56:00 by diona            ###   ########.fr       */
+/*   Updated: 2020/06/29 23:11:27 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_point	*get_point(int x, int y, t_map *map)
+static t_point	*get_point(int x, int y, t_map *map)
 {
 	t_point	*p;
 
-	p = (t_point *)ft_malloc(sizeof(t_point));
+	if (!(p = (t_point *)ft_malloc(sizeof(t_point))))
+		exit_err(MEMORY);
 	p->x = x;
 	p->y = y;
 	p->z = map->vertex[y][x];
@@ -25,7 +26,7 @@ t_point	*get_point(int x, int y, t_map *map)
 	return (p);
 }
 
-void	rotate_x(t_point *p, double alpha)
+static void	rotate_x(t_point *p, double alpha)
 {
 	int	y;
 	int	z;
@@ -36,7 +37,7 @@ void	rotate_x(t_point *p, double alpha)
 	p->z = y * sin(alpha) + z * cos(alpha);
 }
 
-void	rotate_y(t_point *p, double alpha)
+static void	rotate_y(t_point *p, double alpha)
 {
 	int	x;
 	int	z;
@@ -47,7 +48,7 @@ void	rotate_y(t_point *p, double alpha)
 	p->z = -x * sin(alpha) + z * cos(alpha);
 }
 
-void	rotate_z(t_point *p, double alpha)
+static void	rotate_z(t_point *p, double alpha)
 {
 	int	y;
 	int	x;
@@ -58,7 +59,7 @@ void	rotate_z(t_point *p, double alpha)
 	p->y = x * sin(alpha) + y * cos(alpha);
 }
 
-void	iso(t_point *p)
+static void	iso(t_point *p)
 {
 	int	x;
 	int	y;
@@ -69,7 +70,7 @@ void	iso(t_point *p)
 	p->y = -p->z + (x + y) * sin(0.523599);
 }
 
-t_point	projection(t_point *p, t_fdf *fdf)
+static t_point	projection(t_point *p, t_fdf *fdf)
 {
 	p->x *= fdf->camera->zoom;
 	p->y *= fdf->camera->zoom;

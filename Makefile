@@ -21,9 +21,9 @@ LDFLAGS := -fuse-linker-plugin -Wl,--strip-all,--sort-common,--as-needed,-z,relr
 
 vpath %.c src
 
-# @$(MAKE) -C $(LIBFT_DIR) all
 # @$(MAKE) -C $(MLX_DIR) all
 $(NAME): $(OBJ)
+	@$(MAKE) -C $(LIBFT_DIR) all
 	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(LIBFT_LIB) $(OBJ) -o $(NAME)
 
 -include $(DEP)
@@ -46,9 +46,9 @@ fclean: clean
 re: fclean all
 
 test: all
-	@./fdf test_maps/basictest.fdf
+	@./fdf test_maps/42.fdf
 
 love:
 	@echo 'not war'
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test love

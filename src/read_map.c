@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 00:59:37 by diona             #+#    #+#             */
-/*   Updated: 2020/04/11 01:05:24 by diona            ###   ########.fr       */
+/*   Updated: 2020/06/05 01:24:00 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		read_map(int fd, t_map *map)
 	ssize_t	x;
 	ssize_t	y;
 
-	while ((gnl = get_next_line(fd, &line)))
+	while ((gnl = get_next_line(fd, &line)) > 0)
 	{
 		map->height++;
 		if (map->height == 1)
@@ -59,6 +59,8 @@ void		read_map(int fd, t_map *map)
 		}
 		ft_strdel(&line);
 	}
+	if (gnl < 0)
+		exit_err(MAP_ERR);
 	y = 0;
 	if (!(map->vertex = ft_malloc(sizeof(int *) * map->height)))
 		exit_err(MEMORY);
@@ -92,6 +94,4 @@ void		read_map(int fd, t_map *map)
 	// }
 	vec_free(v_num);
 	close(fd);
-	if (gnl < 0)
-		exit_err(MAP_ERR);
 }

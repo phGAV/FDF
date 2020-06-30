@@ -27,8 +27,6 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re
-
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -I $(SRC_DIR) -o $@ -c $<

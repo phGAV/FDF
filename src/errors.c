@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 14:45:40 by diona             #+#    #+#             */
-/*   Updated: 2020/04/09 23:58:42 by diona            ###   ########.fr       */
+/*   Updated: 2020/06/28 17:56:14 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 void	exit_err(char *err_msg)
 {
-	if (errno == 0)
+	if (errno != 0)
+		perror(err_msg);
+	else
 	{
 		write(STDERR_FILENO, err_msg, ft_strlen(err_msg));
 		write(STDERR_FILENO, "\n", 1);
-		exit(1);
 	}
-	perror(err_msg);
 	exit(EXIT_FAILURE);
 }

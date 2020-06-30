@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 18:06:16 by diona             #+#    #+#             */
-/*   Updated: 2020/04/11 01:25:26 by diona            ###   ########.fr       */
+/*   Updated: 2020/06/05 00:57:23 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ t_camera	*camera_init(t_map *map)
 {
 	t_camera	*camera;
 
-	camera = ft_malloc(sizeof(t_camera));
+	if (!(camera = ft_malloc(sizeof(t_camera))))
+		exit_err(MEMORY);
 	camera_reset(camera, map);
 	return (camera);
 }
