@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 17:45:16 by diona             #+#    #+#             */
-/*   Updated: 2020/07/02 23:47:39 by diona            ###   ########.fr       */
+/*   Updated: 2020/07/06 00:07:47 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,18 @@ int		key_hook(int keycode, t_fdf *fdf)
 	t_shortcut	shortcut;
 
 	if (keycode == ESC)
+	{
+		mlx_destroy_image(fdf->mlx, fdf->image);
+		mlx_destroy_window(fdf->mlx, fdf->window);
 		exit(EXIT_SUCCESS);
+	}
 	if ((shortcut = g_key[keycode]))
 	{
 		(*shortcut)(fdf, keycode);
 		draw_map(fdf);
 		mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
 	}
-	mlx_loop(fdf->mlx);
+	// mlx_loop(fdf->mlx);
 	return (0);
 }
 

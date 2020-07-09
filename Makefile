@@ -9,14 +9,14 @@ MLX_DIR := minilibx_macos
 OBJ_DIR := obj
 INCLUDE := include
 
-SRC := main.c draw.c keyboard.c errors.c read_map.c projection.c
+SRC := main.c draw.c color.c keyboard.c errors.c read_map.c draw_map.c projection.c mouse.c keyboard_functions.c camera.c
 OBJ := $(SRC:%.c=$(OBJ_DIR)/%.o)
 DEP := $(OBJ:%.o=%.d)
 
 CC := clang
 MLX_FLAGS := -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 # -Werror
-CFLAGS := -Wall -Wextra -std=c99 -march=native -O2 -ftree-vectorize -fPIC -MMD -I. -I./$(INCLUDE) -I./$(LIBFT_INCLUDE) -I./$(MLX_DIR)
+CFLAGS := -Wall -Wextra -Werror -std=c99 -march=native -O2 -ftree-vectorize -fPIC -MMD -I. -I./$(INCLUDE) -I./$(LIBFT_INCLUDE) -I./$(MLX_DIR)
 LDFLAGS := -fuse-linker-plugin -Wl,--strip-all,--sort-common,--as-needed,-z,relro
 
 vpath %.c src
