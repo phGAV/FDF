@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 23:12:19 by diona             #+#    #+#             */
-/*   Updated: 2020/07/02 23:13:10 by diona            ###   ########.fr       */
+/*   Updated: 2020/07/20 21:55:44 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		mouse_pressed(int button, int x, int y, t_fdf *fdf)
 			return (0);
 		draw_map(fdf);
 		mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
-		// mlx_loop(fdf->mlx);
 	}
 	return (0);
 }
@@ -53,7 +52,6 @@ int		mouse_move(int x, int y, t_fdf *fdf)
 		fdf->camera->angle_x -= (y - fdf->mouse->prev_y) * ANGLE_STEP;
 		draw_map(fdf);
 		mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
-		// mlx_loop(fdf->mlx);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 18:05:46 by diona             #+#    #+#             */
-/*   Updated: 2020/07/02 23:15:40 by diona            ###   ########.fr       */
+/*   Updated: 2020/07/20 22:04:38 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@
 # define KEY_9				25
 # define PLUS				24
 # define MINUS				27
+
+# define KEY_RELEASE		03
+# define BUTTON_PRESS		04
+# define BUTTON_RELEASE		05
+# define MOTION_NOTIFY		06
+# define DESTROY_NOTIFY		17
 
 typedef void	(*t_shortcut)(t_fdf *, int);
 

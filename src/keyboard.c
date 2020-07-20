@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 17:45:16 by diona             #+#    #+#             */
-/*   Updated: 2020/07/20 20:57:01 by diona            ###   ########.fr       */
+/*   Updated: 2020/07/20 22:03:31 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,18 @@ int		key_hook(int keycode, t_fdf *fdf)
 	return (0);
 }
 
+int		on_close(void *param)
+{
+	(void)param;
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
 void	events_control(t_fdf *fdf)
 {
 	mlx_key_hook(fdf->window, key_hook, fdf);
-	mlx_hook(fdf->window, 4, 1L << 2, mouse_pressed, fdf);
-	mlx_hook(fdf->window, 5, 1L << 3, mouse_released, fdf);
-	mlx_hook(fdf->window, 6, 1L << 8, mouse_move, fdf);
+	mlx_hook(fdf->window, DESTROY_NOTIFY, 0, on_close, fdf);
+	mlx_hook(fdf->window, BUTTON_PRESS, 1L << 2, mouse_pressed, fdf);
+	mlx_hook(fdf->window, BUTTON_RELEASE, 1L << 3, mouse_released, fdf);
+	mlx_hook(fdf->window, MOTION_NOTIFY, 1L << 8, mouse_move, fdf);
 }
