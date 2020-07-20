@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_umin.c                                          :+:      :+:    :+:   */
+/*   vec_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/21 19:16:33 by ourgot            #+#    #+#             */
-/*   Updated: 2019/12/21 19:16:33 by ourgot           ###   ########.fr       */
+/*   Created: 2020/03/10 06:49:27 by ourgot            #+#    #+#             */
+/*   Updated: 2020/03/10 06:49:27 by ourgot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
+#include "libft.h"
+#include "vec.h"
 
-/*
-** return (a ^ ((a ^ b) & -(a < b)));
-*/
-uintmax_t	ft_umin(uintmax_t a, uintmax_t b)
+void	vec_clear(t_vec *v)
 {
-	return (a <= b ? a : b);
+	if (v->dtor)
+		vec_apply(v, v->dtor);
+	ft_memset(v->data, 0, v->max_size * v->item_size);
+	v->size = 0;
+	v->none = NULL;
+	v->ctor = NULL;
+	v->dtor = NULL;
 }

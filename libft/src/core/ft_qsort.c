@@ -37,7 +37,7 @@ static inline void	*lomuto(void *left, void *right, size_t size,
 	return (i);
 }
 
-static inline void	quick_sort(void *left, void *right, size_t size,
+static void			quick_sort(void *left, void *right, size_t size,
 		int (*cmp)(const void *, const void *))
 {
 	void *pivot;
@@ -56,6 +56,7 @@ static inline void	quick_sort(void *left, void *right, size_t size,
 ** @size: element's sizeof
 ** @cmp:  compare function
 */
+
 void				ft_qsort(void *data, size_t len, size_t size,
 		int (*cmp)(const void *, const void *))
 {

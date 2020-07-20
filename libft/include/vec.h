@@ -22,24 +22,20 @@
 typedef void *	t_obj;
 
 typedef struct {
-	// void	**refs;
-	void	*data;
 	size_t	item_size;
 	ssize_t	size;
 	ssize_t	max_size;
+	void	*data;
 	t_obj	none;
 	void	(*ctor)(void *, const void *);
 	void	(*dtor)(void *);
-	// int		(*cmp)(const void *, const void *);
-} t_vec;
+}	t_vec;
 
 t_vec		vectorize(void *data, size_t size, size_t item_size);
 
 t_vec		*vec_create(size_t size, size_t item_size);
 t_vec		*vec_import(const char *s, int delim, size_t item_size,
 				void (*f)(void *, const char *, const char *));
-// void		*vec_serialize(const t_vec *v, size_t (*f)(void *, const void *));
-// t_vec		*vec_deserialize(const void *s, size_t (*f)(void *, const void *));
 t_vec		*vec_clone(const t_vec *v);
 void		vec_copy(t_vec *v, const t_vec *u);
 void		vec_clear(t_vec *v);
@@ -59,7 +55,6 @@ void		*vec_bsearch(const t_vec *v, const void *object,
 ssize_t		vec_index(const t_vec *v, const void *object);
 size_t		vec_count(const t_vec *v, const void *object);
 void		*vec_append(t_vec *v, const void *object);
-void		*vec_prepend(t_vec *v, const void *object);
 void		*vec_insert(t_vec *v, ssize_t index, const void *object);
 void		*vec_set(t_vec *v, ssize_t index, const void *object);
 void		*vec_get(const t_vec *v, ssize_t index);

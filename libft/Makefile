@@ -1,48 +1,64 @@
-NAME = libft.a
+# TODO debug/release builds
+NAME := libft.a
+NAME_SHARED := libft.so
 
-OBJ_DIR = ./obj
-SRC_DIR = ./
+BUILD := build
+INCLUDE := include
 
-SRC = ft_apply.c ft_atoi.c ft_bzero.c ft_calloc.c ft_foreach.c ft_isalnum.c ft_isalpha.c \
-	  ft_isascii.c ft_isdigit.c ft_islower.c ft_isprint.c ft_isspace.c ft_isupper.c \
-	  ft_itoa.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c \
-	  ft_lstmap.c ft_lstnew.c ft_malloc.c ft_map.c ft_memalloc.c ft_memccpy.c ft_memchr.c \
-	  ft_memcmp.c ft_memcpy.c ft_memdel.c ft_memdup.c ft_memmove.c ft_memset.c \
-	  ft_memswap.c ft_putchar.c ft_putchar_fd.c ft_putendl.c ft_putendl_fd.c ft_putnbr.c \
-	  ft_putnbr_fd.c ft_putstr.c ft_putstr_fd.c ft_realloc.c ft_strcat.c ft_strchr.c \
-	  ft_strclr.c ft_strcmp.c ft_strcpy.c ft_strdel.c ft_strdup.c \
-	  ft_strelems.c ft_strequ.c ft_striter.c ft_striteri.c ft_strjmp.c ft_strjoin.c ft_strlcat.c \
-	  ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c ft_strncmp.c \
-	  ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c \
-	  ft_strsplit.c ft_strspn.c ft_strstr.c ft_strsub.c ft_strtrim.c \
-	  ft_tolower.c ft_toupper.c ft_umax.c ft_umin.c ft_qsort.c get_next_line.c \
-	  vec_append.c vec_apply.c vec_bsearch.c vec_clear.c vec_clone.c vec_copy.c \
-	  vec_count.c vec_create.c vec_extend.c vec_filter.c \
-	  vec_free.c vec_get.c vec_import.c vec_index.c vec_insert.c \
-	  vec_map.c vec_pop.c vec_prepend.c vec_resize.c vec_reverse.c vec_search.c \
-	  vec_set.c vec_sort.c vectorize.c
+SRC := core/ft_apply.c core/ft_atoi.c core/ft_bzero.c core/ft_calloc.c core/ft_foreach.c core/ft_isalnum.c core/ft_isalpha.c core/ft_isascii.c core/ft_isdigit.c core/ft_islower.c core/ft_isprint.c core/ft_isspace.c core/ft_isupper.c core/ft_itoa.c core/ft_lstadd.c core/ft_lstdel.c core/ft_lstdelone.c core/ft_lstiter.c core/ft_lstmap.c core/ft_lstnew.c core/ft_malloc.c core/ft_map.c core/ft_memalloc.c core/ft_memccpy.c core/ft_memchr.c core/ft_memcmp.c core/ft_memcpy.c core/ft_memdel.c core/ft_memdup.c core/ft_memmove.c core/ft_memset.c core/ft_memswap.c core/ft_putchar.c core/ft_putchar_fd.c core/ft_putendl.c core/ft_putendl_fd.c core/ft_putnbr.c core/ft_putnbr_fd.c core/ft_putstr.c core/ft_putstr_fd.c core/ft_qsort.c core/ft_realloc.c core/ft_strcat.c core/ft_strchr.c core/ft_strclr.c core/ft_strcmp.c core/ft_strcpy.c core/ft_strdel.c core/ft_strdup.c core/ft_strelems.c core/ft_strequ.c core/ft_striter.c core/ft_striteri.c core/ft_strjmp.c core/ft_strjoin.c core/ft_strlcat.c core/ft_strlen.c core/ft_strmap.c core/ft_strmapi.c core/ft_strncat.c core/ft_strncmp.c core/ft_strncpy.c core/ft_strnequ.c core/ft_strnew.c core/ft_strnstr.c core/ft_strrchr.c core/ft_strsplit.c core/ft_strspn.c core/ft_strstr.c core/ft_strsub.c core/ft_strtrim.c core/ft_tolower.c core/ft_toupper.c core/ft_umax.c core/ft_umin.c core/get_next_line.c vec/vec_append.c vec/vec_apply.c vec/vec_bsearch.c vec/vec_clear.c vec/vec_clone.c vec/vec_copy.c vec/vec_count.c vec/vec_create.c vec/vec_extend.c vec/vec_filter.c vec/vec_free.c vec/vec_get.c vec/vec_import.c vec/vec_index.c vec/vec_insert.c vec/vec_map.c vec/vec_pop.c vec/vec_remove.c vec/vec_resize.c vec/vec_reverse.c vec/vec_search.c vec/vec_set.c vec/vec_sort.c vec/vectorize.c 
+OBJ := $(SRC:%.c=$(BUILD)/%.o)
+DEP := $(OBJ:%.o=%.d)
 
-OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+# AR := llvm-ar
+# RANLIB := llvm-ranlib
+AR := ar
+RANLIB := ranlib
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CC := clang
+WFLAGS := -Wall -Wextra
+# WFLAGS += -Wpedantic
+# WFLAGS += -Werror
+OFLAGS := -O2 -march=native
+OFLAGS += -ftree-vectorize
+OFLAGS += -flto=thin
+CFLAGS := $(WFLAGS) $(OFLAGS) -fPIC -MMD -I./$(INCLUDE)
 
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -I $(SRC_DIR) -o $@ -c $<
+vpath %.c src src/core src/vec 
+
+.PHONY: all clean fclean re test love debug
 
 $(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+	@echo "Linking '$@'..."
+	@$(AR) rcs $@ $?
+	@$(RANLIB) $@
+	@echo "\x1b[32;1m[$(NAME)] Done\x1b[0m"
+
+-include $(DEP)
+$(BUILD)/%.o: %.c
+	@mkdir -p $(@D)
+	@echo "[$(NAME)] Building object '$@'"
+	@$(CC) $(CFLAGS) -o $@ -c $<
+
+$(NAME_SHARED): $(OBJ)
+	@$(CC) $(CFLAGS) -shared -o $@ $^
 
 all: $(NAME)
 
 clean:
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(BUILD)
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f $(NAME_SHARED)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+test: all
+	@test/test.sh "$(CC)" "$(CFLAGS)" "-L./ $(NAME)"
+
+love:
+	@echo 'not war'
+	@sh util/genmake.sh > Makefile
+
+debug:
+	@echo 'nope'

@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_prepend.c                                      :+:      :+:    :+:   */
+/*   ft_umin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 06:49:27 by ourgot            #+#    #+#             */
-/*   Updated: 2020/03/10 10:28:33 by ourgot           ###   ########.fr       */
+/*   Created: 2019/12/21 19:16:33 by ourgot            #+#    #+#             */
+/*   Updated: 2019/12/21 19:16:33 by ourgot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec.h"
+#include <stdint.h>
 
-void	*vec_prepend(t_vec *v, const void *object)
+/*
+** return (a ^ ((a ^ b) & -(a < b)));
+*/
+
+uintmax_t	ft_umin(uintmax_t a, uintmax_t b)
 {
-	return (vec_insert(v, 0, object));
+	return (a <= b ? a : b);
 }

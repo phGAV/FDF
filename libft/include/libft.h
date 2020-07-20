@@ -25,7 +25,8 @@ typedef struct		s_list
 }					t_list;
 
 int					ft_atoi(const char *str);
-void				ft_apply(void *data, size_t len, size_t size, void (*f)(void *));
+void				ft_apply(void *data, size_t len, size_t size,
+						void (*f)(void *));
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t nmemb, size_t size);
 void				ft_foreach(int *tab, int length, void (*f)(int));
@@ -89,8 +90,8 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strnew(size_t size);
-char				*ft_strnstr(const char *haystack, const char *needle, \
-		size_t len);
+char				*ft_strnstr(const char *haystack, const char *needle,
+						size_t len);
 char				*ft_strrchr(const char *s, int c);
 char				**ft_strsplit(char const *s, char c);
 size_t				ft_strspn(const char *s, const char *accept);
@@ -100,7 +101,7 @@ char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 void				ft_qsort(void *data, size_t len, size_t size,
-		int (*cmp)(const void *, const void *));
+						int (*cmp)(const void *, const void *));
 uintmax_t			ft_umin(uintmax_t a, uintmax_t b);
 uintmax_t			ft_umax(uintmax_t a, uintmax_t b);
 

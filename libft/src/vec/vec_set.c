@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_extract.c                                      :+:      :+:    :+:   */
+/*   vec_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 06:49:27 by ourgot            #+#    #+#             */
-/*   Updated: 2020/03/10 06:49:27 by ourgot           ###   ########.fr       */
+/*   Updated: 2020/03/10 10:28:33 by ourgot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "vec.h"
 
-t_vec	*vec_extract(const t_vec *v, ssize_t index, size_t size)
+void	*vec_set(t_vec *v, ssize_t index, const void *object)
 {
-	t_vec	*u;
+	t_obj	ob;
 	ssize_t	n;
 
 	n = v->size;
@@ -23,11 +23,12 @@ t_vec	*vec_extract(const t_vec *v, ssize_t index, size_t size)
 		index += n;
 	if ((size_t)index >= (size_t)n)
 		return (NULL);
-	size = ft_imin(size, n - index);
-	if ((u = vec_create(size, v->item_size)))
-	{
-		u->size = size;
-		ft_memcpy(u->data, v->data + index * v->item_size, size * v->item_size);
-	}
-	return (u);
+	ob = v->data + index * v->item_size;
+	if (v->dtor)
+		v->dtor(ob);
+	if (v->ctor)
+		v->ctor(ob, object);
+	else
+		ft_memcpy(ob, object, v->item_size);
+	return (ob);
 }

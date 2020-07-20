@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_clear.c                                        :+:      :+:    :+:   */
+/*   internal.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,16 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "vec.h"
+#ifndef INTERNAL_H
+# define INTERNAL_H
 
-void	vec_clear(t_vec *v)
-{
-	if (v->dtor)
-		vec_apply(v, v->dtor);
-	ft_memset(v->data, 0, v->max_size * v->item_size);
-	v->size = 0,
-	v->none = NULL;
-	v->ctor = NULL;
-	v->dtor = NULL;
-}
+# include "vec.h"
+
+t_vec	*vec_resize(t_vec *v, ssize_t size);
+
+#endif
