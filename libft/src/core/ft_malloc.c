@@ -6,14 +6,13 @@
 /*   By: ourgot <ourgot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 23:20:21 by ourgot            #+#    #+#             */
-/*   Updated: 2019/12/25 23:20:21 by ourgot           ###   ########.fr       */
+/*   Updated: 2020/07/20 20:41:01 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <errno.h>
 #include <stdlib.h>
 
-#include <stdio.h>
 void	*ft_malloc(size_t size)
 {
 	void *ptr;
@@ -29,6 +28,5 @@ void	*ft_malloc(size_t size)
 		errno = ENOMEM;
 		return (NULL);
 	}
-	printf("%p\n", ptr);
 	return (ptr);
 }

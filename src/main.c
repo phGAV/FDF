@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 18:06:16 by diona             #+#    #+#             */
-/*   Updated: 2020/07/05 15:06:15 by diona            ###   ########.fr       */
+/*   Updated: 2020/07/20 20:55:13 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int			main(int argc, char **argv)
 	ft_bzero(&map, sizeof(t_map));
 	ft_bzero(&fdf, sizeof(t_fdf));
 	read_map(fd, &map);
+	close(fd);
 	fdf_init(&map, &fdf);
 	return (EXIT_SUCCESS);
 }

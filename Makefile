@@ -27,7 +27,7 @@ OFLAGS := -O2 -march=native
 # OFLAGS := -g
 OFLAGS += -ftree-vectorize
 # OFLAGS += -flto=thin
-CFLAGS := $(WFLAGS) $(OFLAGS) -fPIC -MMD -I./$(INCLUDE) -I./$(LIBFT_INCLUDE)
+CFLAGS := $(WFLAGS) $(OFLAGS) -fPIC -MMD -I./$(INCLUDE) -I./$(LIBFT_INCLUDE) -I./$(MLX_DIR)
 MLX_FLAGS := -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 vpath %.c src
