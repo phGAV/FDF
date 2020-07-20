@@ -48,11 +48,14 @@ int		key_hook(int keycode, t_fdf *fdf)
 
 	if (keycode == ESC)
 	{
+		vec_free(fdf->map->vertex);
+		free(fdf->camera);
+		free(fdf->mouse);
 		mlx_destroy_image(fdf->mlx, fdf->image);
 		mlx_destroy_window(fdf->mlx, fdf->window);
 		exit(EXIT_SUCCESS);
 	}
-	if ((shortcut = g_key[keycode]))
+	if (keycode <= KEYBOARD_MAX && (shortcut = g_key[keycode]))
 	{
 		(*shortcut)(fdf, keycode);
 		draw_map(fdf);
@@ -65,8 +68,8 @@ int		key_hook(int keycode, t_fdf *fdf)
 void	events_control(t_fdf *fdf)
 {
 	mlx_key_hook(fdf->window, key_hook, fdf);
-	mlx_hook(fdf->window, 4, 1L<<2, mouse_pressed, fdf);
-	mlx_hook(fdf->window, 5, 1L<<3, mouse_released, fdf);
-	mlx_hook(fdf->window, 6, 1L<<8, mouse_move, fdf);
-	mlx_loop(fdf->mlx);
+	mlx_hook(fdf->window, 4, 1L << 2, mouse_pressed, fdf);
+	mlx_hook(fdf->window, 5, 1L << 3, mouse_released, fdf);
+	mlx_hook(fdf->window, 6, 1L << 8, mouse_move, fdf);
+	// mlx_loop(fdf->mlx);
 }

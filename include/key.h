@@ -54,7 +54,7 @@
 # define PLUS				24
 # define MINUS				27
 
-typedef void (*t_shortcut)(t_fdf *, int);
+typedef void	(*t_shortcut)(t_fdf *, int);
 
 void	move_side(t_fdf *fdf, int keycode);
 void	move_up(t_fdf *fdf, int keycode);

@@ -14,7 +14,7 @@
 
 static int	color_blend(int begin, int end, double percentage)
 {
-    return ((int)((1 - percentage) * begin + percentage * end));
+	return ((int)((1 - percentage) * begin + percentage * end));
 }
 
 static int	color_from_percentage(int start, int end, double percentage)

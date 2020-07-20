@@ -13,6 +13,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
+#include <stdio.h>
 void	*ft_malloc(size_t size)
 {
 	void *ptr;
@@ -28,5 +29,6 @@ void	*ft_malloc(size_t size)
 		errno = ENOMEM;
 		return (NULL);
 	}
+	printf("%p\n", ptr);
 	return (ptr);
 }

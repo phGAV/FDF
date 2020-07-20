@@ -76,4 +76,6 @@ void			read_map(int fd, t_map *map)
 		exit_err(MAP_ERR);
 	min_max(map);
 	close(fd);
+	printf("--%p\n", v_add);
+	printf("--%p\n", line);
 }

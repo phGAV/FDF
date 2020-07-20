@@ -25,7 +25,7 @@ static t_point	get_point(int x, int y, t_map *map)
 
 void			set_background(t_fdf *fdf)
 {
-	ft_bzero(fdf->img_ptr, sizeof(int) * WIN_WIDTH * WIN_HEIGHT);
+	ft_bzero(fdf->img_ptr, WIN_WIDTH * WIN_HEIGHT * sizeof(int));
 }
 
 void			draw_map(t_fdf *fdf)

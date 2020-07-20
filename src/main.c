@@ -31,6 +31,7 @@ void		fdf_init(t_map *map, t_fdf *fdf)
 	draw_map(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
 	events_control(fdf);
+	mlx_loop(fdf->mlx);
 }
 
 int			main(int argc, char **argv)

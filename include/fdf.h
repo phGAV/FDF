@@ -15,24 +15,24 @@
 
 # include <math.h>
 # include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
+// # include <sys/types.h>
+// # include <sys/uio.h>
+// # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <string.h>
+// # include <string.h>
 # include <mlx.h>
-# include "libft.h"
 
+# include "libft.h"
 # include "errors.h"
 
-# define			WIN_HEIGHT	1000
-# define			WIN_WIDTH	1500
+# define WIN_HEIGHT	1000
+# define WIN_WIDTH	1500
 
-# define			WHITE		0x00FFFFFF
-# define			PINK		0x00FF3DEA
-# define			TURQUOISE	0x0000FFEC
-# define			BACKGROUND	0x00131313
+# define WHITE		0x00FFFFFF
+# define PINK		0x00FF3DEA
+# define TURQUOISE	0x0000FFEC
+# define BACKGROUND	0x00131313
 
 typedef struct {
 	bool			hold;
