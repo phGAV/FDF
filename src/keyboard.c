@@ -14,6 +14,7 @@
 #include "key.h"
 
 static const t_shortcut	g_key[KEYBOARD_MAX] = {
+	[ESC] = (t_shortcut)close_hook,
 	[ARROW_UP] = move_up,
 	[ARROW_DOWN] = move_up,
 	[ARROW_LEFT] = move_side,
@@ -42,39 +43,31 @@ void	move_side(t_fdf *fdf, int keycode)
 		(fdf->camera->offset_x -= OFFSET_STEP);
 }
 
+int		close_hook(t_fdf *fdf, int keycode)
+{
+	(void)keycode;
+	mlx_destroy_image(fdf->mlx, fdf->menu);
+	mlx_destroy_image(fdf->mlx, fdf->image);
+	mlx_destroy_window(fdf->mlx, fdf->window);
+	exit(EXIT_SUCCESS);
+}
+
 int		key_hook(int keycode, t_fdf *fdf)
 {
 	t_shortcut	shortcut;
 
-	if (keycode == ESC)
-	{
-		vec_free(fdf->map->vertex);
-		free(fdf->camera);
-		free(fdf->mouse);
-		mlx_destroy_image(fdf->mlx, fdf->image);
-		mlx_destroy_window(fdf->mlx, fdf->window);
-		exit(EXIT_SUCCESS);
-	}
 	if (keycode <= KEYBOARD_MAX && (shortcut = g_key[keycode]))
 	{
 		(*shortcut)(fdf, keycode);
 		draw_map(fdf);
-		mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
 	}
-	return (0);
-}
-
-int		on_close(void *param)
-{
-	(void)param;
-	exit(EXIT_SUCCESS);
 	return (0);
 }
 
 void	events_control(t_fdf *fdf)
 {
-	mlx_key_hook(fdf->window, key_hook, fdf);
-	mlx_hook(fdf->window, DESTROY_NOTIFY, 0, on_close, fdf);
+	mlx_hook(fdf->window, DESTROY_NOTIFY, 0, close_hook, fdf);
+	mlx_hook(fdf->window, KEY_PRESS, 1, key_hook, fdf);
 	mlx_hook(fdf->window, BUTTON_PRESS, 1L << 2, mouse_pressed, fdf);
 	mlx_hook(fdf->window, BUTTON_RELEASE, 1L << 3, mouse_released, fdf);
 	mlx_hook(fdf->window, MOTION_NOTIFY, 1L << 8, mouse_move, fdf);

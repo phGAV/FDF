@@ -72,20 +72,3 @@ t_point		projection(t_point p, t_fdf *fdf)
 	p.y += WIN_HEIGHT / 2 + fdf->camera->offset_y;
 	return (p);
 }
-
-// t_point		projection(t_point *p, t_fdf *fdf)
-// {
-// 	p->x *= fdf->camera->zoom;
-// 	p->y *= fdf->camera->zoom;
-// 	p->z *= fdf->camera->ratio_z;
-// 	p->x -= fdf->map->width * fdf->camera->zoom / 2;
-// 	p->y -= fdf->map->height * fdf->camera->zoom / 2;
-// 	rotate_x(p, fdf->camera->angle_x);
-// 	rotate_y(p, fdf->camera->angle_y);
-// 	rotate_z(p, fdf->camera->angle_z);
-// 	if (fdf->camera->projection == ISO)
-// 		iso(p);
-// 	p->x += WIN_WIDTH / 2 + fdf->camera->offset_x;
-// 	p->y += WIN_HEIGHT / 2 + fdf->camera->offset_y;
-// 	return (*p);
-// }

@@ -10,17 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <errno.h>
+#include <stdio.h>
+
 #include "fdf.h"
-#include <sys/errno.h>
 
 void	exit_err(char *err_msg)
 {
 	if (errno != 0)
 		perror(err_msg);
 	else
-	{
-		write(STDERR_FILENO, err_msg, ft_strlen(err_msg));
-		write(STDERR_FILENO, "\n", 1);
-	}
+		ft_putendl_fd(err_msg, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }

@@ -15,19 +15,18 @@
 
 int		mouse_pressed(int button, int x, int y, t_fdf *fdf)
 {
-	if (x < WIN_WIDTH && y < WIN_HEIGHT)
+	(void)x;
+	(void)y;
+	if (button == MOUSE_LEFT_BUTTON)
 	{
-		if (button == MOUSE_SCROLL_UP)
-			fdf->camera->zoom < MAX_ZOOM ? fdf->camera->zoom++ : MAX_ZOOM;
-		else if (button == MOUSE_SCROLL_DOWN)
-			fdf->camera->zoom > MIN_ZOOM ? fdf->camera->zoom-- : MIN_ZOOM;
-		else if (button == MOUSE_LEFT_BUTTON)
-			fdf->mouse->hold = true;
-		else
-			return (0);
-		draw_map(fdf);
-		mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
+		fdf->mouse->hold = true;
+		return (0);
 	}
+	if (button == MOUSE_SCROLL_UP)
+		fdf->camera->zoom < MAX_ZOOM ? fdf->camera->zoom++ : MAX_ZOOM;
+	else if (button == MOUSE_SCROLL_DOWN)
+		fdf->camera->zoom > MIN_ZOOM ? fdf->camera->zoom-- : MIN_ZOOM;
+	draw_map(fdf);
 	return (0);
 }
 
@@ -51,7 +50,6 @@ int		mouse_move(int x, int y, t_fdf *fdf)
 		fdf->camera->angle_y += (x - fdf->mouse->prev_x) * ANGLE_STEP;
 		fdf->camera->angle_x -= (y - fdf->mouse->prev_y) * ANGLE_STEP;
 		draw_map(fdf);
-		mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
 	}
 	return (0);
 }

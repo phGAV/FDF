@@ -44,7 +44,7 @@ static void		min_max(t_map *map)
 		i++;
 		if (val < map->min_z)
 			map->min_z = val;
-		if (val > map->max_z)
+		else if (val > map->max_z)
 			map->max_z = val;
 	}
 }

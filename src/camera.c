@@ -12,26 +12,22 @@
 
 #include "fdf.h"
 
-void		camera_reset(t_camera *camera, t_map *map)
+void		camera_init(t_camera *camera, t_map *map)
 {
 	int			y_scale;
 	int			x_scale;
 
-	ft_bzero(camera, sizeof(t_camera));
+	camera->angle_x = 0;
+	camera->angle_y = 0;
+	camera->angle_z = 0;
+	camera->offset_x = 0;
+	camera->offset_y = 0;
 	y_scale = WIN_HEIGHT / map->height / 2;
 	x_scale = WIN_WIDTH / map->width / 2;
 	camera->zoom = x_scale > y_scale ? y_scale : x_scale;
 	camera->ratio_z = (map->max_z - map->min_z == 0) ? 1 :
 		(WIN_HEIGHT - map->height * camera->zoom) /
 		(map->max_z - map->min_z) / 2;
-}
-
-t_camera	*camera_init(t_map *map)
-{
-	t_camera	*camera;
-
-	if (!(camera = ft_malloc(sizeof(t_camera))))
-		exit_err(MEMORY);
-	camera_reset(camera, map);
-	return (camera);
+	if (camera->projection == ISO)
+		camera->offset_y += map->max_z * camera->zoom / 2;
 }

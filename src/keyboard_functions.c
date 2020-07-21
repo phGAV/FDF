@@ -21,8 +21,8 @@ void	flatten(t_fdf *fdf, int keycode)
 
 void	change_projection(t_fdf *fdf, int keycode)
 {
-	camera_reset(fdf->camera, fdf->map);
-	keycode == P ? fdf->camera->projection = PARALLEL : ISO;
+	fdf->camera->projection = keycode == P ? PARALLEL : ISO;
+	camera_init(fdf->camera, fdf->map);
 }
 
 void	change_angle_z(t_fdf *fdf, int keycode)

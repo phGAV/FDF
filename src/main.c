@@ -12,42 +12,43 @@
 
 #include "fdf.h"
 
-void		fdf_init(t_map *map, t_fdf *fdf)
+void		fdf_init(t_fdf *fdf)
 {
-	t_mouse		*mouse;
-
-	if (!(mouse = ft_malloc(sizeof(t_mouse))))
-		exit_err(MEMORY);
 	fdf->line_size = WIN_WIDTH;
 	fdf->mlx = mlx_init();
 	fdf->window = mlx_new_window(fdf->mlx,
-			WIN_WIDTH, WIN_HEIGHT, "Fils de fer");
+			WIN_WIDTH + MENU_WIDTH, WIN_HEIGHT, "Fils de fer");
+	fdf->menu = mlx_new_image(fdf->mlx, MENU_WIDTH, WIN_HEIGHT);
+	fdf->menu_ptr = (int*)mlx_get_data_addr(fdf->menu, &fdf->bpp,
+			&fdf->line_size, &fdf->endian);
 	fdf->image = mlx_new_image(fdf->mlx, WIN_WIDTH, WIN_HEIGHT);
 	fdf->img_ptr = (int*)mlx_get_data_addr(fdf->image, &fdf->bpp,
 			&fdf->line_size, &fdf->endian);
-	fdf->camera = camera_init(map);
-	fdf->map = map;
-	fdf->mouse = mouse;
-	draw_map(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
-	events_control(fdf);
-	mlx_loop(fdf->mlx);
 }
 
 int			main(int argc, char **argv)
 {
-	t_map		map;
 	t_fdf		fdf;
+	t_map		map;
+	t_mouse		mouse;
+	t_camera	camera;
 	int			fd;
 
 	if (argc != 2)
 		exit_err(USAGE);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		exit_err(FILE_OPEN);
-	ft_bzero(&map, sizeof(t_map));
-	ft_bzero(&fdf, sizeof(t_fdf));
+	ft_memset(&fdf, 0, sizeof(t_fdf));
+	fdf.map = ft_memset(&map, 0, sizeof(t_map));
+	fdf.mouse = ft_memset(&mouse, 0, sizeof(t_mouse));
+	fdf.camera = ft_memset(&camera, 0, sizeof(t_mouse));
 	read_map(fd, &map);
 	close(fd);
-	fdf_init(&map, &fdf);
+	camera_init(&camera, &map);
+	fdf_init(&fdf);
+	draw_map(&fdf);
+	draw_menu(&fdf);
+	events_control(&fdf);
+	mlx_loop(fdf.mlx);
 	return (EXIT_SUCCESS);
 }

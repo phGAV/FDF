@@ -54,6 +54,7 @@
 # define PLUS				24
 # define MINUS				27
 
+# define KEY_PRESS			02
 # define KEY_RELEASE		03
 # define BUTTON_PRESS		04
 # define BUTTON_RELEASE		05
@@ -73,5 +74,7 @@ void	flatten(t_fdf *fdf, int keycode);
 int		mouse_pressed(int button, int x, int y, t_fdf *fdf);
 int		mouse_released(int button, int x, int y, t_fdf *fdf);
 int		mouse_move(int x, int y, t_fdf *fdf);
+
+int		close_hook(t_fdf *fdf, int keycode);
 
 #endif

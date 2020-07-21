@@ -15,24 +15,20 @@
 
 # include <math.h>
 # include <fcntl.h>
-// # include <sys/types.h>
-// # include <sys/uio.h>
-// # include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-// # include <string.h>
 # include <mlx.h>
 
 # include "libft.h"
 # include "errors.h"
 
 # define WIN_HEIGHT	1000
-# define WIN_WIDTH	1500
+# define WIN_WIDTH	1250
+# define MENU_WIDTH	250
 
 # define WHITE		0x00FFFFFF
 # define PINK		0x00FF3DEA
 # define TURQUOISE	0x0000FFEC
 # define BACKGROUND	0x00131313
+# define BG_MENU	0x00232323
 
 typedef struct {
 	bool			hold;
@@ -40,14 +36,14 @@ typedef struct {
 	int				y;
 	int				prev_x;
 	int				prev_y;
-}					t_mouse;
+}	t_mouse;
 
 typedef enum {
-					ISO,
-					PARALLEL
-}					t_projection;
+	ISO,
+	PARALLEL
+}	t_projection;
 
-typedef struct {
+typedef struct		s_point {
 	int				x;
 	int				y;
 	int				z;
@@ -60,7 +56,7 @@ typedef struct {
 	t_vec			*vertex;
 	int				max_z;
 	int				min_z;
-}					t_map;
+}	t_map;
 
 typedef struct {
 	t_projection	projection;
@@ -71,30 +67,32 @@ typedef struct {
 	int				zoom;
 	int				offset_x;
 	int				offset_y;
-}					t_camera;
+}	t_camera;
 
-typedef struct {
+typedef struct		s_fdf {
+	t_camera		*camera;
+	t_mouse			*mouse;
+	t_map			*map;
 	void			*mlx;
 	void			*window;
 	void			*image;
 	int				*img_ptr;
+	void			*menu;
+	int				*menu_ptr;
 	int				bpp;
 	int				line_size;
 	int				endian;
-	t_camera		*camera;
-	t_map			*map;
-	t_mouse			*mouse;
 }					t_fdf;
 
-void				set_background(t_fdf *fdf);
+void				set_background(int *img_ptr, int color, size_t size);
 void				draw_line(t_point start, t_point end, t_fdf *fdf);
 void				exit_err(char *err_msg);
 void				read_map(int fd, t_map *map);
 void				draw_map(t_fdf *fdf);
+void				draw_menu(t_fdf *fdf);
 int					find_vertex_color(int max, int min, int current);
 void				events_control(t_fdf *fdf);
-void				camera_reset(t_camera *camera, t_map *map);
-t_camera			*camera_init(t_map *map);
+void				camera_init(t_camera *camera, t_map *map);
 t_point				projection(t_point p, t_fdf *fdf);
 int					find_color(t_point *current, t_point *begin, t_point *end);
 int					get_opacity(int color, double opacity);
