@@ -80,4 +80,5 @@ void			draw_map(t_fdf *fdf)
 		y++;
 	}
 	mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
+	mlx_string_put(fdf->mlx, fdf->window, 65, 45, WHITE, fdf->map->name);
 }

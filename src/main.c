@@ -49,10 +49,11 @@ int			main(int argc, char **argv)
 		exit_err(FILE_OPEN);
 	ft_memset(&fdf, 0, sizeof(t_fdf));
 	fdf.map = ft_memset(&map, 0, sizeof(t_map));
-	map.lo_color = PINK;
-	map.hi_color = TURQUOISE;
 	fdf.mouse = ft_memset(&mouse, 0, sizeof(t_mouse));
 	fdf.camera = ft_memset(&camera, 0, sizeof(t_mouse));
+	map.lo_color = PINK;
+	map.hi_color = TURQUOISE;
+	map.name = argv[1];
 	read_map(fd, &map);
 	close(fd);
 	camera_init(&camera, &map);

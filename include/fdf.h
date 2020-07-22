@@ -60,6 +60,7 @@ typedef struct {
 	t_vec			*vertex;
 	int				max_z;
 	int				min_z;
+	char			*name;
 }	t_map;
 
 typedef struct {
