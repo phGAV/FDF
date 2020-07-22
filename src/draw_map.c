@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 15:57:31 by diona             #+#    #+#             */
-/*   Updated: 2020/07/10 01:14:02 by diona            ###   ########.fr       */
+/*   Updated: 2020/07/22 12:18:08 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void			draw_map(t_fdf *fdf)
 	int			x;
 
 	set_background(fdf->img_ptr, BACKGROUND, WIN_WIDTH * WIN_HEIGHT);
+	mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
 	y = 0;
 	while (y < fdf->map->height)
 	{
