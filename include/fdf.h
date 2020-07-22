@@ -27,7 +27,7 @@
 # define WHITE		0x00FFFFFF
 # define PINK		0x00FF3DEA
 # define TURQUOISE	0x0000FFEC
-# define BG_BLUR	0xee000000
+# define BG_BLUR	0xe0000000
 # define BG_SOLID	0x00000000
 # define BG_MENU	0x00131313
 
