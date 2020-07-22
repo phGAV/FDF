@@ -27,8 +27,9 @@
 # define WHITE		0x00FFFFFF
 # define PINK		0x00FF3DEA
 # define TURQUOISE	0x0000FFEC
-# define BACKGROUND	0x00131313
-# define BG_MENU	0x00232323
+# define BG_BLUR	0xee000000
+# define BG_SOLID	0x00000000
+# define BG_MENU	0x00131313
 
 typedef struct {
 	bool			hold;
@@ -51,6 +52,9 @@ typedef struct		s_point {
 }					t_point;
 
 typedef struct {
+	int				bg_color;
+	int				lo_color;
+	int				hi_color;
 	ssize_t			width;
 	ssize_t			height;
 	t_vec			*vertex;
@@ -90,7 +94,7 @@ void				exit_err(char *err_msg);
 void				read_map(int fd, t_map *map);
 void				draw_map(t_fdf *fdf);
 void				draw_menu(t_fdf *fdf);
-int					find_vertex_color(int max, int min, int current);
+int					find_vertex_color(t_map *map, int max, int min, int current);
 void				events_control(t_fdf *fdf);
 void				camera_init(t_camera *camera, t_map *map);
 t_point				projection(t_point p, t_fdf *fdf);

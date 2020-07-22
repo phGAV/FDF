@@ -39,7 +39,9 @@
 # define ARROW_LEFT			123
 # define ARROW_RIGHT		124
 
+# define C					8
 # define I					34
+# define M					46
 # define P					35
 # define KEY_0				29
 # define KEY_1				18
@@ -69,6 +71,8 @@ void	change_angle_x(t_fdf *fdf, int keycode);
 void	change_angle_y(t_fdf *fdf, int keycode);
 void	change_angle_z(t_fdf *fdf, int keycode);
 void	change_projection(t_fdf *fdf, int keycode);
+void	change_colors(t_fdf *fdf, int keycode);
+void	change_blur(t_fdf *fdf, int keycode);
 void	flatten(t_fdf *fdf, int keycode);
 
 int		mouse_pressed(int button, int x, int y, t_fdf *fdf);

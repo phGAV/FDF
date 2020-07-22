@@ -12,6 +12,14 @@
 
 #include "fdf.h"
 
+// [ ] norme
+// [ ] line draw
+// [ ] change color
+// [ ] view offset
+// [ ] map is CRAZY
+// [x] menu
+// [x] do not redraw
+
 void		fdf_init(t_fdf *fdf)
 {
 	fdf->line_size = WIN_WIDTH;
@@ -40,15 +48,18 @@ int			main(int argc, char **argv)
 		exit_err(FILE_OPEN);
 	ft_memset(&fdf, 0, sizeof(t_fdf));
 	fdf.map = ft_memset(&map, 0, sizeof(t_map));
+	map.lo_color = PINK;
+	map.hi_color = TURQUOISE;
 	fdf.mouse = ft_memset(&mouse, 0, sizeof(t_mouse));
 	fdf.camera = ft_memset(&camera, 0, sizeof(t_mouse));
 	read_map(fd, &map);
 	close(fd);
 	camera_init(&camera, &map);
 	fdf_init(&fdf);
-	draw_map(&fdf);
+	// draw_map(&fdf);
 	draw_menu(&fdf);
 	events_control(&fdf);
+	mlx_loop_hook(fdf.mlx, (int (*)())draw_map, &fdf);
 	mlx_loop(fdf.mlx);
 	return (EXIT_SUCCESS);
 }

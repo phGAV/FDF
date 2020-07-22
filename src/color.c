@@ -42,13 +42,14 @@ int			find_color(t_point *current, t_point *begin, t_point *end)
 	return (color_from_percentage(begin->color, end->color, percentage));
 }
 
-int			find_vertex_color(int max, int min, int current)
+int			find_vertex_color(t_map *map, int max, int min, int current)
 {
 	double	percentage;
 
 	percentage = (max - min == 0) ? 1.0 :
 		((double)(current - min) / (double)(max - min));
-	return (color_from_percentage(PINK, TURQUOISE, percentage));
+	// return (color_from_percentage(PINK, TURQUOISE, percentage));
+	return (color_from_percentage(map->lo_color, map->hi_color, percentage));
 }
 
 int			get_opacity(int color, double opacity)

@@ -27,6 +27,8 @@ static const t_shortcut	g_key[KEYBOARD_MAX] = {
 	[KEY_4] = change_angle_y,
 	[KEY_5] = change_angle_z,
 	[KEY_6] = change_angle_z,
+	[C] = change_colors,
+	[M] = change_blur,
 	[I] = change_projection,
 	[P] = change_projection
 };
@@ -59,7 +61,7 @@ int		key_hook(int keycode, t_fdf *fdf)
 	if (keycode <= KEYBOARD_MAX && (shortcut = g_key[keycode]))
 	{
 		(*shortcut)(fdf, keycode);
-		draw_map(fdf);
+		// draw_map(fdf);
 	}
 	return (0);
 }

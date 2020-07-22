@@ -19,7 +19,7 @@ static t_point	get_point(int x, int y, t_map *map)
 	p.x = x;
 	p.y = y;
 	p.z = ((int *)map->vertex->data)[y * map->width + x];
-	p.color = find_vertex_color(map->max_z, map->min_z, p.z);
+	p.color = find_vertex_color(map, map->max_z, map->min_z, p.z);
 	return (p);
 }
 
@@ -43,15 +43,17 @@ void			draw_menu(t_fdf *fdf)
 {
 	set_background(fdf->menu_ptr, BG_MENU, MENU_WIDTH * WIN_HEIGHT);
 	mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->menu, WIN_WIDTH, 0);
-	draw_string(fdf, "Zoom: Scroll");
 	draw_string(fdf, "Move: Arrows");
 	draw_string(fdf, "Flatten: -/+");
-	draw_string(fdf, "Rotate: Mouse drag");
+	draw_string(fdf, "Zoom: Mouse scroll");
 	draw_string(fdf, "Rotate:");
+	draw_string(fdf, "  Mouse drag");
 	draw_string(fdf, "  X: 1/2");
 	draw_string(fdf, "  Y: 3/4");
 	draw_string(fdf, "  Z: 5/6");
 	draw_string(fdf, "Projection: I/P");
+	draw_string(fdf, "Change color: C");
+	draw_string(fdf, "Motion blur: M");
 }
 
 void			draw_map(t_fdf *fdf)
@@ -59,7 +61,8 @@ void			draw_map(t_fdf *fdf)
 	int			y;
 	int			x;
 
-	set_background(fdf->img_ptr, BACKGROUND, WIN_WIDTH * WIN_HEIGHT);
+	set_background(fdf->img_ptr, fdf->map->bg_color, WIN_WIDTH * WIN_HEIGHT);
+	// mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
 	y = 0;
 	while (y < fdf->map->height)
 	{
