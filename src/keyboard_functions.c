@@ -48,7 +48,7 @@ int		hsv_to_rgb(int h, int s, int v)
 
 void	change_colors(t_fdf *fdf, int keycode)
 {
-	const int hue = rand() % 360;
+	const int hue = ft_rand() % 360;
 	(void)keycode;
 	fdf->map->lo_color = hsv_to_rgb(hue, 74, 100);
 	fdf->map->hi_color = hsv_to_rgb(360 - hue, 74, 100);

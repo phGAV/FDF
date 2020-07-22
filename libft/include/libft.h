@@ -105,4 +105,7 @@ void				ft_qsort(void *data, size_t len, size_t size,
 uintmax_t			ft_umin(uintmax_t a, uintmax_t b);
 uintmax_t			ft_umax(uintmax_t a, uintmax_t b);
 
+void				ft_srand(int seed);
+int					ft_rand(void);
+
 #endif
