@@ -14,11 +14,12 @@
 
 // [ ] norme
 // [ ] line draw
-// [ ] change color
-// [ ] view offset
-// [ ] map is CRAZY
+// [x] change color
+// [?] view offset
+// [ ] map is CRAZY, i like it a lot
 // [x] menu
-// [x] do not redraw
+// [x] do not redraw on click
+// [ ] correct skew
 
 void		fdf_init(t_fdf *fdf)
 {

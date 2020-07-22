@@ -28,6 +28,6 @@ void		camera_init(t_camera *camera, t_map *map)
 	camera->ratio_z = (map->max_z - map->min_z == 0) ? 1 :
 		(WIN_HEIGHT - map->height * camera->zoom) /
 		(map->max_z - map->min_z) / 2;
-	// if (camera->projection == ISO)
-	// 	camera->offset_y += map->max_z * camera->zoom / 2;
+	if (camera->projection == ISO)
+		camera->offset_y += abs(map->max_z + map->min_z) * camera->zoom / 2;
 }
