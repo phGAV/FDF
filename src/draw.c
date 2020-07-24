@@ -83,61 +83,31 @@ static void		draw_along_x(t_point start, t_point end, t_fdf *fdf,
 	}
 }
 
-// void			draw_line(t_point start, t_point end, t_fdf *fdf)
-// {
-// 	double		delta_x;
-// 	double		delta_y;
-// 	double		delta_err;
-
-// 	if (start.x == end.x && start.y == end.y)
-// 		return ;
-// 	if (start.x == end.x || start.y == end.y)
-// 		straight_line(start, end, fdf);
-// 	else
-// 	{
-// 		delta_x = fabs((double)(end.x - start.x));
-// 		delta_y = fabs((double)(end.y - start.y));
-// 		if (delta_x > delta_y)
-// 		{
-// 			delta_err = (delta_y + 1) / (delta_x + 1);
-// 			start.x < end.x ?
-// 				draw_along_x(start, end, fdf, delta_err) :
-// 				draw_along_x(end, start, fdf, delta_err);
-// 		}
-// 		else
-// 		{
-// 			delta_err = (delta_x + 1) / (delta_y + 1);
-// 			start.y < end.y ?
-// 				draw_along_y(start, end, fdf, delta_err) :
-// 				draw_along_y(end, start, fdf, delta_err);
-// 		}
-// 	}
-// }
-
 void			draw_line(t_point start, t_point end, t_fdf *fdf)
 {
 	double		delta_x;
 	double		delta_y;
 	double		delta_err;
 
-	if (start.x == end.x || start.y == end.y)
+	if (start.x != end.x && start.y != end.y)
 	{
-		if (start.x != end.x || start.y != end.y)
-			straight_line(start, end, fdf);
-		return ;
+		delta_x = fabs((double)(end.x - start.x));
+		delta_y = fabs((double)(end.y - start.y));
+		if (delta_x > delta_y)
+		{
+			delta_err = (delta_y + 1) / (delta_x + 1);
+			start.x < end.x ?
+				draw_along_x(start, end, fdf, delta_err) :
+				draw_along_x(end, start, fdf, delta_err);
+		}
+		else
+		{
+			delta_err = (delta_x + 1) / (delta_y + 1);
+			start.y < end.y ?
+				draw_along_y(start, end, fdf, delta_err) :
+				draw_along_y(end, start, fdf, delta_err);
+		}
 	}
-	delta_x = fabs((double)(end.x - start.x));
-	delta_y = fabs((double)(end.y - start.y));
-	if (delta_x > delta_y)
-	{
-		delta_err = (delta_y + 1) / (delta_x + 1);
-		start.x < end.x ?
-			draw_along_x(start, end, fdf, delta_err) :
-			draw_along_x(end, start, fdf, delta_err);
-		return ;
-	}
-	delta_err = (delta_x + 1) / (delta_y + 1);
-	start.y < end.y ?
-		draw_along_y(start, end, fdf, delta_err) :
-		draw_along_y(end, start, fdf, delta_err);
+	else if (start.x != end.x || start.y != end.y)
+		straight_line(start, end, fdf);
 }
