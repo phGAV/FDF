@@ -12,21 +12,15 @@
 
 #include "fdf.h"
 
-// [ ] norme
-// [ ] line draw
-// [x] change color
-// [?] view offset
+// [ ] line draw?
 // [ ] map is CRAZY, i like it a lot
-// [x] menu
-// [x] do not redraw on click
-// [ ] correct skew?
 
-void		fdf_init(t_fdf *fdf)
+void		fdf_init(t_fdf *fdf, const char *map_name)
 {
 	fdf->line_size = WIN_WIDTH;
 	fdf->mlx = mlx_init();
-	fdf->window = mlx_new_window(fdf->mlx,
-			WIN_WIDTH + MENU_WIDTH, WIN_HEIGHT, "Fils de fer");
+	fdf->window = mlx_new_window(fdf->mlx, WIN_WIDTH + MENU_WIDTH,
+			WIN_HEIGHT, ft_strjoin("Fils de fer: ", map_name));
 	fdf->menu = mlx_new_image(fdf->mlx, MENU_WIDTH, WIN_HEIGHT);
 	fdf->menu_ptr = (int*)mlx_get_data_addr(fdf->menu, &fdf->bpp,
 			&fdf->line_size, &fdf->endian);
@@ -53,12 +47,10 @@ int			main(int argc, char **argv)
 	fdf.camera = ft_memset(&camera, 0, sizeof(t_mouse));
 	map.lo_color = PINK;
 	map.hi_color = TURQUOISE;
-	map.name = argv[1];
 	read_map(fd, &map);
 	close(fd);
 	camera_init(&camera, &map);
-	fdf_init(&fdf);
-	// draw_map(&fdf);
+	fdf_init(&fdf, argv[1]);
 	draw_menu(&fdf);
 	events_control(&fdf);
 	mlx_loop_hook(fdf.mlx, (int (*)())draw_map, &fdf);

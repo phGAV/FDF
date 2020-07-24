@@ -59,10 +59,7 @@ int		key_hook(int keycode, t_fdf *fdf)
 	t_shortcut	shortcut;
 
 	if (keycode <= KEYBOARD_MAX && (shortcut = g_key[keycode]))
-	{
 		(*shortcut)(fdf, keycode);
-		// draw_map(fdf);
-	}
 	return (0);
 }
 

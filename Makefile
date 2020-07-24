@@ -9,7 +9,9 @@ MLX_DIR := minilibx_macos
 BUILD := build
 INCLUDE := include
 
-SRC := main.c draw.c color.c keyboard.c errors.c read_map.c draw_map.c projection.c mouse.c keyboard_functions.c camera.c
+SRC := main.c draw.c color.c keyboard.c errors.c read_map.c \
+		draw_map.c projection.c mouse.c keyboard_functions.c \
+		keyboard_functions_fx.c camera.c
 OBJ := $(SRC:%.c=$(BUILD)/%.o)
 DEP := $(OBJ:%.o=%.d)
 
