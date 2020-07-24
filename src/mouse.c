@@ -18,15 +18,13 @@ int		mouse_pressed(int button, int x, int y, t_fdf *fdf)
 	(void)x;
 	(void)y;
 	if (button == MOUSE_LEFT_BUTTON)
-	// {
 		fdf->mouse->hold = true;
-		// return (0);
-	// }
+	else if (button == MOUSE_RIGHT_BUTTON)
+		fdf->mouse->hold_rmb = true;
 	else if (button == MOUSE_SCROLL_UP)
 		fdf->camera->zoom < MAX_ZOOM ? fdf->camera->zoom++ : MAX_ZOOM;
 	else if (button == MOUSE_SCROLL_DOWN)
 		fdf->camera->zoom > MIN_ZOOM ? fdf->camera->zoom-- : MIN_ZOOM;
-	// draw_map(fdf);
 	return (0);
 }
 
@@ -36,6 +34,7 @@ int		mouse_released(int button, int x, int y, t_fdf *fdf)
 	(void)x;
 	(void)y;
 	fdf->mouse->hold = false;
+	fdf->mouse->hold_rmb = false;
 	return (0);
 }
 
@@ -45,11 +44,15 @@ int		mouse_move(int x, int y, t_fdf *fdf)
 	fdf->mouse->prev_y = fdf->mouse->y;
 	fdf->mouse->x = x;
 	fdf->mouse->y = y;
-	if (fdf->mouse->hold)
+	if (fdf->mouse->hold_rmb)
 	{
-		fdf->camera->angle_y += (x - fdf->mouse->prev_x) * ANGLE_STEP;
 		fdf->camera->angle_x -= (y - fdf->mouse->prev_y) * ANGLE_STEP;
-		// draw_map(fdf);
+		fdf->camera->angle_z -= (x - fdf->mouse->prev_x) * ANGLE_STEP;
+	}
+	else if (fdf->mouse->hold)
+	{
+		fdf->camera->offset_y -= fdf->mouse->prev_y - y;
+		fdf->camera->offset_x -= fdf->mouse->prev_x - x;
 	}
 	return (0);
 }
