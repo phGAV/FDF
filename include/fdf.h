@@ -33,6 +33,7 @@
 
 typedef struct {
 	bool			hold;
+	bool			hold_rmb;
 	int				x;
 	int				y;
 	int				prev_x;
@@ -52,15 +53,14 @@ typedef struct		s_point {
 }					t_point;
 
 typedef struct {
-	int				bg_color;
-	int				lo_color;
-	int				hi_color;
 	ssize_t			width;
 	ssize_t			height;
 	t_vec			*vertex;
 	int				max_z;
 	int				min_z;
-	char			*name;
+	int				lo_color;
+	int				hi_color;
+	int				bg_color;
 }	t_map;
 
 typedef struct {
@@ -95,7 +95,8 @@ void				exit_err(char *err_msg);
 void				read_map(int fd, t_map *map);
 void				draw_map(t_fdf *fdf);
 void				draw_menu(t_fdf *fdf);
-int					find_vertex_color(t_map *map, int max, int min, int current);
+int					find_vertex_color(t_map *map,
+						int max, int min, int current);
 void				events_control(t_fdf *fdf);
 void				camera_init(t_camera *camera, t_map *map);
 t_point				projection(t_point p, t_fdf *fdf);
