@@ -43,16 +43,18 @@ void			draw_menu(t_fdf *fdf)
 {
 	set_background(fdf->menu_ptr, BG_MENU, MENU_WIDTH * WIN_HEIGHT);
 	mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->menu, WIN_WIDTH, 0);
-	draw_string(fdf, "Move: Arrows");
-	draw_string(fdf, "Flatten: -/+");
-	draw_string(fdf, "Zoom: Mouse scroll");
+	draw_string(fdf, "Move:");
+	draw_string(fdf, "  Drag LMB");
+	draw_string(fdf, "  Arrows");
 	draw_string(fdf, "Rotate:");
-	draw_string(fdf, "  Mouse drag");
+	draw_string(fdf, "  Drag RMB");
 	draw_string(fdf, "  X: 1/2");
 	draw_string(fdf, "  Y: 3/4");
 	draw_string(fdf, "  Z: 5/6");
+	draw_string(fdf, "Zoom: Mouse scroll");	
+	draw_string(fdf, "Flatten: -/+");	
 	draw_string(fdf, "Projection: I/P");
-	draw_string(fdf, "Change color: C");
+	draw_string(fdf, "Change colors: C");
 	draw_string(fdf, "Motion blur: M");
 }
 
@@ -80,5 +82,4 @@ void			draw_map(t_fdf *fdf)
 		y++;
 	}
 	mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
-	mlx_string_put(fdf->mlx, fdf->window, 65, 45, WHITE, fdf->map->name);
 }
