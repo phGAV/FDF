@@ -51,14 +51,51 @@ void			draw_menu(t_fdf *fdf)
 	draw_string(fdf, "  X: 1/2");
 	draw_string(fdf, "  Y: 3/4");
 	draw_string(fdf, "  Z: 5/6");
-	draw_string(fdf, "Zoom: Mouse scroll");	
-	draw_string(fdf, "Flatten: -/+");	
+	draw_string(fdf, "Zoom: Mouse scroll");
+	draw_string(fdf, "Flatten: -/+");
 	draw_string(fdf, "Projection: I/P");
 	draw_string(fdf, "Change colors: C");
 	draw_string(fdf, "Motion blur: M");
 }
 
+int				gallop_x(bool *next_exists, int x, int y, t_map *map)
+{
+	const int	*vertex = map->vertex->data;
+	const int	z = vertex[y * map->width + x];
+
+	if (z != vertex[y * map->width + x + 1])
+		return (x + 1);
+	while (x <= map->height && z != vertex[y * map->width + x])
+		x++;
+	if (x == map->height)
+		*next_exists = false;
+	return (x);
+}
+
 void			draw_map(t_fdf *fdf)
+{
+	int			y;
+	int			x;
+	bool		next_exists;
+	t_point		start;
+	t_point		end;
+
+	set_background(fdf->img_ptr, fdf->map->bg_color, WIN_WIDTH * WIN_HEIGHT);
+	y = 0;
+	x = 0;
+	next_exists = true;
+	while (y <= fdf->map->height)
+	{
+		start = get_point(x, y, fdf->map);
+		end = get_point(gallop_x(&next_exists, x, y, fdf->map), y, fdf->map);
+		draw_line(projection(start, fdf), projection(end, fdf), fdf);
+		x = end.x;
+		y++;
+	}
+	mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
+}
+
+void			draw_map0(t_fdf *fdf)
 {
 	int			y;
 	int			x;
