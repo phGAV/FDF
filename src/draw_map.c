@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 15:57:31 by diona             #+#    #+#             */
-/*   Updated: 2020/07/10 01:14:02 by diona            ###   ########.fr       */
+/*   Updated: 2020/07/25 17:34:26 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,50 +58,12 @@ void			draw_menu(t_fdf *fdf)
 	draw_string(fdf, "Motion blur: M");
 }
 
-int				gallop_x(bool *next_exists, int x, int y, t_map *map)
-{
-	const int	*vertex = map->vertex->data;
-	const int	z = vertex[y * map->width + x];
-
-	if (z != vertex[y * map->width + x + 1])
-		return (x + 1);
-	while (x <= map->height && z != vertex[y * map->width + x])
-		x++;
-	if (x == map->height)
-		*next_exists = false;
-	return (x);
-}
-
 void			draw_map(t_fdf *fdf)
 {
 	int			y;
 	int			x;
-	bool		next_exists;
-	t_point		start;
-	t_point		end;
 
 	set_background(fdf->img_ptr, fdf->map->bg_color, WIN_WIDTH * WIN_HEIGHT);
-	y = 0;
-	x = 0;
-	next_exists = true;
-	while (y <= fdf->map->height)
-	{
-		start = get_point(x, y, fdf->map);
-		end = get_point(gallop_x(&next_exists, x, y, fdf->map), y, fdf->map);
-		draw_line(projection(start, fdf), projection(end, fdf), fdf);
-		x = end.x;
-		y++;
-	}
-	mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
-}
-
-void			draw_map0(t_fdf *fdf)
-{
-	int			y;
-	int			x;
-
-	set_background(fdf->img_ptr, fdf->map->bg_color, WIN_WIDTH * WIN_HEIGHT);
-	// mlx_put_image_to_window(fdf->mlx, fdf->window, fdf->image, 0, 0);
 	y = 0;
 	while (y < fdf->map->height)
 	{

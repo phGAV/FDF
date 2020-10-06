@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 01:22:55 by diona             #+#    #+#             */
-/*   Updated: 2020/07/05 19:34:51 by diona            ###   ########.fr       */
+/*   Updated: 2020/07/25 18:53:21 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	rotate_x(t_point *p, double alpha)
 
 	y = p->y;
 	z = p->z;
-	p->y = y * cos(alpha) - z * sin(alpha);
-	p->z = y * sin(alpha) + z * cos(alpha);
+	p->y = y * cos(alpha) + z * sin(alpha);
+	p->z = -y * sin(alpha) + z * cos(alpha);
 }
 
 static void	rotate_y(t_point *p, double alpha)

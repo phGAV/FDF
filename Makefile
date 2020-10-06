@@ -57,7 +57,6 @@ clean:
 	@rm -rf $(BUILD)
 
 fclean: clean
-	# @$(MAKE) -C $(MLX_DIR) fclean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@rm -f $(NAME)
 

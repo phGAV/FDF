@@ -6,7 +6,7 @@
 /*   By: diona <diona@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 16:18:12 by diona             #+#    #+#             */
-/*   Updated: 2020/07/05 16:21:26 by diona            ###   ########.fr       */
+/*   Updated: 2020/07/25 17:40:46 by diona            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,10 @@ int			find_vertex_color(t_map *map, int max, int min, int current)
 
 	percentage = (max - min == 0) ? 1.0 :
 		((double)(current - min) / (double)(max - min));
-	// return (color_from_percentage(PINK, TURQUOISE, percentage));
 	return (color_from_percentage(map->lo_color, map->hi_color, percentage));
 }
 
 int			get_opacity(int color, double opacity)
 {
-	int		alpha;
-
-	alpha = floor(0xff * (1 - opacity));
-	return ((alpha << 24) | color);
+	return (color_from_percentage(BG_BLUR, color, opacity));
 }
